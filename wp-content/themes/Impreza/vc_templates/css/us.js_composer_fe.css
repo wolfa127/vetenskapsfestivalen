@@ -1,0 +1,39 @@
+.compose-mode .vc_control-btn-append {
+	top: 13px;
+	}
+	.compose-mode .vc_control-btn .vc_btn-content {
+		vertical-align: top !important;
+		}
+	
+.wpb_button {
+	cursor: default;
+	padding: 0;
+	text-shadow: none;
+	background: none !important;
+	border: none !important;
+	}
+.wpb_content_element .wpb_tour_tabs_wrapper .wpb_tabs_nav a,
+.wpb_content_element .wpb_accordion_header a {
+	border-bottom: none !important;
+	}
+.flickr_badge_image {
+	width: 75px;
+	height: 75px;
+	margin: 0;
+	}
+	.wpb_flickr_widget p.flickr_stream_wrap a {
+		background: none;
+		padding-left: 0;
+		display: inline;
+		}
+.wpb_content_element .wpb_tabs_nav li {
+	background-color: rgba(0,0,0,0.16);
+	}
+.wpb_content_element .wpb_tabs_nav li.ui-tabs-active,
+.wpb_content_element .wpb_tabs_nav li:hover {
+	background-color: rgba(0,0,0,0.08);
+	}
+.wpb_content_element .wpb_accordion_wrapper .wpb_accordion_header,
+.wpb_content_element.wpb_tabs .wpb_tour_tabs_wrapper .wpb_tab {
+	background-color: rgba(0,0,0,0.08);
+	}

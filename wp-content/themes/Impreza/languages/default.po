@@ -1,0 +1,301 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Impreza\n"
+"POT-Creation-Date: 2014-09-18 23:28+0200\n"
+"PO-Revision-Date: 2014-09-18 23:29+0200\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: en_GB\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.6.3\n"
+"X-Poedit-KeywordsList: __;_e\n"
+"X-Poedit-Basepath: .\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-SearchPath-0: ..\n"
+
+#: ../404.php:11
+msgid "Error 404 - page not found"
+msgstr ""
+
+#: ../404.php:12
+msgid "Ohh... You have requested the page that is no longer there"
+msgstr ""
+
+#: ../archive.php:18
+msgid "Category Archive for"
+msgstr ""
+
+#: ../archive.php:21
+msgid "Posts Tagged"
+msgstr ""
+
+#: ../archive.php:24 ../archive.php:27 ../archive.php:30
+msgid "Archive for"
+msgstr ""
+
+#: ../archive.php:33
+msgid "Author Archive"
+msgstr ""
+
+#: ../archive.php:36
+msgid "Blog Archives"
+msgstr ""
+
+#: ../comments.php:13
+msgid "No comments"
+msgstr ""
+
+#: ../comments.php:13
+msgid "1 Comment."
+msgstr ""
+
+#: ../comments.php:13
+msgid "Leave new"
+msgstr ""
+
+#: ../comments.php:13
+msgid "% Comments."
+msgstr ""
+
+#: ../comments.php:30
+#, php-format
+msgid "You must be %slogged in%s to post a comment."
+msgstr ""
+
+#: ../forum.php:45 ../page-sidebar_left.php:39 ../page-sidebar_right.php:39
+#: ../page.php:9 ../search.php:107 ../single-us_portfolio.php:12
+#: ../single.php:182 ../templates/archive_big.php:32
+#: ../templates/archive_small.php:31
+msgid "No posts were found."
+msgstr ""
+
+#: ../header.php:109 ../header.php:361
+msgid "Phone"
+msgstr ""
+
+#: ../header.php:116 ../header.php:368
+msgid "Email"
+msgstr ""
+
+#: ../header.php:391 ../header.php:442
+msgid "Just type and press 'enter'"
+msgstr ""
+
+#: ../header.php:397 ../header.php:448 ../searchform.php:11
+msgid "Search"
+msgstr ""
+
+#: ../page-sidebar_left.php:21 ../page-sidebar_right.php:21
+msgid "Read More &raquo;"
+msgstr ""
+
+#: ../search.php:17
+msgid "Search Results for"
+msgstr ""
+
+#: ../search.php:59 ../shortcodes.php:1439 ../single.php:86
+#: ../templates/blog_single_post.php:106
+msgid "No Comments"
+msgstr ""
+
+#: ../search.php:59 ../shortcodes.php:1441 ../single.php:86
+#: ../templates/blog_single_post.php:106
+msgid "1 Comment"
+msgstr ""
+
+#: ../search.php:59 ../shortcodes.php:1437 ../single.php:86
+#: ../templates/blog_single_post.php:106
+msgid "% Comments"
+msgstr ""
+
+#: ../searchform.php:7
+msgid "search"
+msgstr ""
+
+#: ../shortcodes.php:222 ../functions/link_pages.php:142
+#: ../functions/shortcodes.php:77
+msgid "Next"
+msgstr ""
+
+#: ../shortcodes.php:223 ../functions/shortcodes.php:78
+msgid "Previous"
+msgstr ""
+
+#: ../shortcodes.php:286
+msgid "Please, enter your name"
+msgstr ""
+
+#: ../shortcodes.php:293
+msgid "Please, enter your email"
+msgstr ""
+
+#: ../shortcodes.php:295 ../functions/shortcodes.php:150
+msgid "Please, enter correct email"
+msgstr ""
+
+#: ../shortcodes.php:302
+msgid "Please, enter your phone"
+msgstr ""
+
+#: ../shortcodes.php:309
+msgid "Please, enter your message"
+msgstr ""
+
+#: ../shortcodes.php:320 ../functions/shortcodes.php:175
+msgid "Please, enter correct result"
+msgstr ""
+
+#: ../shortcodes.php:340 ../functions/shortcodes.php:195
+msgid "Contact request from"
+msgstr ""
+
+#: ../shortcodes.php:355 ../functions/shortcodes.php:210
+msgid "Thank You"
+msgstr ""
+
+#: ../shortcodes.php:355 ../functions/shortcodes.php:210
+msgid "Your message was sent"
+msgstr ""
+
+#: ../shortcodes.php:383
+msgid "Your Name"
+msgstr ""
+
+#: ../shortcodes.php:396 ../functions/shortcodes.php:254
+msgid "Your Email"
+msgstr ""
+
+#: ../shortcodes.php:409 ../functions/shortcodes.php:268
+msgid "Your Phone"
+msgstr ""
+
+#: ../shortcodes.php:422 ../functions/shortcodes.php:282
+msgid "Your Message"
+msgstr ""
+
+#: ../shortcodes.php:449 ../functions/shortcodes.php:310
+msgid "Just to prove you are a human, please solve the equation: "
+msgstr ""
+
+#: ../shortcodes.php:464 ../functions/shortcodes.php:328
+msgid "Send Message"
+msgstr ""
+
+#: ../shortcodes.php:1397
+#, php-format
+msgid "View all posts in %s"
+msgstr ""
+
+#: ../shortcodes.php:1495 ../templates/blog_single_post.php:143
+msgid "Read More"
+msgstr ""
+
+#: ../shortcodes.php:1515 ../templates/blog_grid.php:71
+msgid "Load More Posts"
+msgstr ""
+
+#: ../shortcodes.php:1682 ../functions/shortcodes.php:1192
+msgid "All"
+msgstr ""
+
+#: ../single.php:107
+msgid "Tags"
+msgstr ""
+
+#: ../single.php:147
+msgid "Related Posts"
+msgstr ""
+
+#: ../functions/breadcrumbs.php:10
+msgid "Home"
+msgstr ""
+
+#: ../functions/breadcrumbs.php:11
+#, php-format
+msgid "Archive by Category \"%s\""
+msgstr ""
+
+#: ../functions/breadcrumbs.php:12
+#, php-format
+msgid "Search Results for \"%s\" Query"
+msgstr ""
+
+#: ../functions/breadcrumbs.php:13
+#, php-format
+msgid "Posts Tagged \"%s\""
+msgstr ""
+
+#: ../functions/breadcrumbs.php:14
+#, php-format
+msgid "Articles Posted by %s"
+msgstr ""
+
+#: ../functions/breadcrumbs.php:15
+msgid "Error 404"
+msgstr ""
+
+#: ../functions/breadcrumbs.php:126
+msgid "Page"
+msgstr ""
+
+#: ../functions/link_pages.php:33
+msgid "Pages:"
+msgstr ""
+
+#: ../functions/link_pages.php:36
+msgid "Next page"
+msgstr ""
+
+#: ../functions/link_pages.php:37
+msgid "Previous page"
+msgstr ""
+
+#: ../functions/link_pages.php:132
+msgid "Prev"
+msgstr ""
+
+#: ../functions/menu.php:94
+msgid "Main Menu"
+msgstr ""
+
+#: ../functions/menu.php:95
+msgid "Footer Menu"
+msgstr ""
+
+#: ../functions/shortcodes.php:141
+msgid "Please, enter Your name"
+msgstr ""
+
+#: ../functions/shortcodes.php:148
+msgid "Please, enter Your email"
+msgstr ""
+
+#: ../functions/shortcodes.php:157
+msgid "Please, enter Your phone"
+msgstr ""
+
+#: ../functions/shortcodes.php:164
+msgid "Please, enter Your message"
+msgstr ""
+
+#: ../functions/shortcodes.php:240
+msgid "Your name"
+msgstr ""
+
+#: ../functions/woocommerce.php:147
+msgid "View your shopping cart"
+msgstr ""
+
+#: ../functions/widgets/contact.php:42
+msgid "Contacts"
+msgstr ""
+
+#: ../templates/cart_dropdown.php:13
+msgid "Product"
+msgstr ""
+
+#: ../templates/cart_dropdown.php:13
+msgid "was successfully added to your cart"
+msgstr ""

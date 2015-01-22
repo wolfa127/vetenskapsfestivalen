@@ -1,0 +1,36 @@
+#side-sortables .rwmb-slider-wrapper .rwmb-label {
+	margin-bottom: 8px;
+	}
+.rwmb-slider {
+	display: inline-block;
+	vertical-align: middle;
+	height: 6px;
+	width: 215px;
+	border-radius: 0;
+	border: none;
+	cursor: pointer;
+	background: #eee;
+	}
+.ui-slider .ui-slider-range {
+	border-radius: 0;
+	background: #aaa;
+	}
+.rwmb-slider-wrapper .ui-widget-content .ui-state-default {
+	top: -8px;
+	height: 18px;
+	width: 18px;
+	margin-left: -10px;
+	border-radius: 50%;
+	cursor: pointer;
+	box-shadow: none;
+	border: 2px solid #ccc;
+	background: #fff;
+	}
+.rwmb-slider-wrapper .ui-widget-content:hover .ui-state-default {
+	border-color: #999;
+	}
+.rwmb-slider-value-label {
+	float: left;
+	margin-left: 0;
+	width: 30px;
+	}
