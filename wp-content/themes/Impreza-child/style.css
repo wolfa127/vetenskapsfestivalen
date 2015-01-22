@@ -12,7 +12,7 @@ Author URI: http://us-themes.com/
 /* TESTING 3 */
 
 h2{
-    font-size: 33px;
+    font-size: 3px;
     text-transform: uppercase
 }
 h3{
@@ -50,7 +50,10 @@ h3{
     opacity: 1;
 }
 
-
+body.title_program .w-nav .w-nav-item:first-child .w-nav-anchor.level_1 .w-nav-title::after {
+    bottom: 0 !important;
+    opacity: 1 !important;
+}
 
 .w-logo {
     background-color: transparent;
@@ -168,7 +171,9 @@ h3{
 }
 
 
-
+.search-results .l-submain.for_pagehead.search_results .w-pagehead h1 {
+    color: #000000;
+}
 
 .w-pagehead .g-breadcrumbs a, .w-pagehead .g-breadcrumbs{
 color: #FFFFFF;
@@ -287,10 +292,19 @@ a.filter-button-subject:active{
     padding: 15px 10px 15px 15px;
 }
 
+.ng-scope .eventTopPart h3 {
+    margin-bottom: 0;
+}
+
+.ng-scope .eventTopPart > p {
+    font-size: 0.9em;
+    font-style: italic;
+}
+
 .ng-isolate-scope{
     float: left;
     margin-right: 10px;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 
 .multiselect-parent.btn-group.dropdown-multiselect .dropdown-menu{
@@ -328,6 +342,7 @@ a.filter-button-subject:active{
     border-radius: 0px;
     background-color: #f8b085;
     color: #000000;
+    height: 46px;
     margin: 0px;
     font-family: 'Varela Round';
     padding: 14px 66px;
@@ -394,6 +409,7 @@ a.filter-button-subject.venue:active{
 .filter-button-subject.venue > span {
     padding: 10px 10px;
 }
+
 .filter-button-subject.venue .checkIcon{
     display: inline-block;
     border-right: 1px solid #ffffff;
@@ -404,6 +420,20 @@ a.filter-button-subject.venue:active{
     border-right: 1px solid #f36f20;
 }
 
+.family-filter.filter-button-subject.venue .familyIcon{
+    background-image: url("img/family_icon.png");
+    background-position: 1em 40%;
+    display: inline;
+    height: auto;
+    padding-left: 3.5em;
+    vertical-align: middle;
+    width: auto;
+}
+
+.family-filter.filter-button-subject.venue:hover .familyIcon{
+    background-image: url("img/family_icon_orange.png");
+}
+
 
 input[type="text"].input-text-search{
     width: 270px;
@@ -412,9 +442,31 @@ input[type="text"].input-text-search{
     border: 1px solid #939393;
     height: 46px;
 }
+
+.ng-scope .searchContainer {
+    float: left;
+    position: relative;
+}
+
+.ng-scope .searchContainer h6 {
+    display: none;
+    bottom: 100%;
+    position: absolute;
+    left: 0;
+}
+
+body.ie9 .ng-scope .searchContainer h6 {
+    display: block;
+}
+
+.ng-scope .searchContainer input[type="text"].input-text-search {
+    float: none;
+}
+
 .input-text-search input[type="text"]:focus {
     border: 3px solid #f36f20;
 }
+
 ul.eventlist {
     margin-left: 0px;
 }
@@ -506,14 +558,14 @@ ul.eventlist > li{
 
 .eventlist-item-timebox {
     background-color: #000000;
+    border: 1px solid #000000;
     color: #FFFFFF;
     display: table-cell;
-    text-align: left;
-    padding: 10px;
-    width: 103px;
-    min-width: 103px;
-    border: 1px solid #e3e3e3;
     border-right: none;
+    min-width: 103px;
+    padding: 10px;
+    text-align: center;
+    width: 103px;
 }
 
 
@@ -531,23 +583,36 @@ ul.eventlist > li{
     border: 1px solid #e3e3e3;
     border-left: none;
 }
+
 .eventlist-item .eventlist-item-content .eventItem_title {
+    display: block;
     font-weight: bold;
     font-size: 19px;
+    line-height: 1em;
 }
 .eventlist-item .eventlist-item-content .eventItem_event_type {
-    position: relative;
-    top:-6px;
-    font-size: 12px;
+    font-size: 0.9em;
+    font-style: italic;
+}
+
+.eventlist-item .eventlist-item-content .categories {
+    font-size: 0.9em;
+}
+
+.eventlist-item > a > div {
+    vertical-align: middle;
+}
+
+.eventlist-item-content p {
+    margin-bottom: 0;
 }
 
 .eventlist-item-geo{
-    width: 164px;
-    padding: 10px;
     border: 1px solid #e3e3e3;
-    display: table-cell;
-
     border-left: none;
+    display: table-cell;
+    padding: 10px;
+    width: 164px;
 }
 
 .eventlist-item-geo .fa-map-marker:before{
@@ -660,9 +725,57 @@ ul.eventlist > li{
     .single .l-sidebar.at_right {
         margin-top: 0;
     }
+
+    .w-toplink.active {
+        display: none;
+    }
+
+    .filter-button-subject {
+        margin-bottom: 10px;
+    }
+
+    .l-submain-h.g-html .g-cols > div.one-third {
+        width: 30.6666% !important;
+        margin-left: 4% !important;
+        margin-bottom: 0;
+    }
+
+    .l-submain-h.g-html .g-cols > div.one-third:first-child {
+        margin-left: 0px !important;
+    }
+
+    .l-submain {
+        padding: 0px 40px;
+    }
+
+    .w-shortblog.columns_2 .w-shortblog-list, .w-shortblog.columns_3 .w-shortblog-list {
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    .w-shortblog-entry {
+        padding: 0px !important;
+        width: 100% !important;
+        margin-bottom: 20px;
+    }
+
+    .w-shortblog-entry-h {
+        position: relative;
+    }
+
+    .w-shortblog.date_atleft .w-shortblog-entry-title, .w-shortblog.date_atleft .w-shortblog-entry-meta, .w-shortblog.date_atleft .w-shortblog-entry-short {
+        margin-left: 110px;
+    }
 }
 
 @media only screen and (max-width: 599px) {
+
+    .l-submain-h.g-html .g-cols > div.one-third {
+        width: 100% !important;
+        margin-left: 0px !important;
+        margin-bottom: 30px;
+    }
+
 
     .eventHeader{
         height: auto;
@@ -739,11 +852,62 @@ ul.eventlist > li{
         right: 0;
     }
 
+    .g-html h2 {
+        font-size: 1.6em !important;
+        letter-spacing: -1px;
+    }
+
+    .g-html h3 {
+        font-size: 1.2em !important;
+        letter-spacing: -0.75px;
+    }
+
     .filter-button-days {
         width: 100%;
     }
     a.filter-button-subject:link, a.filter-button-subject:visited, a.filter-button-subject:hover, a.filter-button-subject:active {
         width: 100%;
+    }
+
+    .ng-isolate-scope, .ng-isolate-scope .btn-venueListDropdown {
+        width: 100%;
+    }
+
+    .multiselect-parent.btn-group.dropdown-multiselect .dropdown-menu {
+        margin: 0 auto;
+        max-width: none;
+        width: 100%;
+    }
+
+    .ng-scope .searchContainer, .ng-scope .searchContainer input.input-text-search[type="text"] {
+        width: 100%;
+    }
+
+    .eventlist-item-timebox .ng-binding {
+        line-height: 2.2em;
+        vertical-align: middle;
+    }
+
+    .eventlist-item-family {
+        margin-right: 10px;
+        text-align: right;
+    }
+
+
+    .family-filter.filter-button-subject.venue {
+        padding-right: 0;
+    }
+}
+
+@media only screen and (max-width: 450px) {
+    .g-html h1 {
+        font-size: 1.5em !important;
+        letter-spacing: -0.75px;
+    }
+
+    .g-html h2 {
+        font-size: 1.3em !important;
+        letter-spacing: -0.8px;
     }
 }
 

@@ -1,18 +1,25 @@
 
     <div class="eventTopPart">
         <h3>FESTIVALDAGAR</h3>
+        <p>Välj vilka dagar du vill se i programmet.</p>
         <a ng-repeat="day in daysListObjects" href=""  class="filter-button-days" ng-click="filterDaysClick()" ng-class="{'selected':day.selected }" ><span class="weekDayName">{{day.weekDayName}}</span><span class="monthDate">{{day.dateText}} {{day.monthName}}</span></a>
     </div>
     <div class="eventTopPart">
         <h3>PROGRAMKATEGORIER</h3>
+        <p>Välj vilka olika kategorier programmet ska visa.</p>
         <a ng-repeat="subject in subjectsListObjects" href=""  class="filter-button-subject" ng-click="filterSubjectClick()" ng-class="{'selected':subject.selected }" ><div class="checkIcon"><i class="fa fa-check"></i></div><span class="subject">{{subject.subject}}</span></a>
     </div>
 
     <div class="eventTopPart">
         <h3>ÖVRIGT</h3>
+        <p>Här kan du ställa in mer detaljer om vad du vill se; specifika platser, om du bara vill se familjeaktiviteter eller söka på aktiviteter.</p>
         <div ng-dropdown-multiselect="" options="venueListObjects" selected-model="venueListDropdownModel" extra-settings="venueListDropdownSettings" translation-texts="venueListDropdownTexts"></div>
-        <a href=""  class="filter-button-subject venue" ng-click="familyFilterClick()" ng-class="{'selected':familyFilter==1 }" ><div class="checkIcon"><i class="fa fa-check"></i></div><i class="fa family"></i><span class="subject">FAMILJEAKTIVITET</span></a>
-        <input class="input-text-search" type="text" placeholder="Sök på aktivitet" ng-model="searchText.$">
+        <a href=""  class="filter-button-subject venue family-filter" ng-click="familyFilterClick()" ng-class="{'selected':familyFilter==1 }" ><div class="checkIcon"><i class="fa fa-check"></i></div><i class="fa family"></i><span class="subject familyIcon">FAMILJEAKTIVITET</span></a>
+
+        <div class="searchContainer">
+            <h6>Sök på aktivitet</h6>
+            <input class="input-text-search" type="text" placeholder="Sök på aktivitet" ng-model="searchText.$">
+        </div>
     </div>
 
 
@@ -35,9 +42,9 @@
                         <span>{{eventItem.event_start | dateToTime}}-{{eventItem.event_end | dateToTime}}</span>
                     </div>
                    <div class="eventlist-item-content">
-                        <span class="eventItem_title">{{eventItem.title}}</span><br>
-                        <span ng-show="eventItem.event_type != ''" class="eventItem_event_type">{{eventItem.event_type}}<br></span>
-                        <p ng-show="eventItem.subjectList.length > 0"><span class="crew bold">Programkategorier: </span><span ng-repeat="subjectObject in eventItem.subjectList">{{subjectObject}}{{$last ? '' : ', '}}</span></p>
+                        <span class="eventItem_title">{{eventItem.title}}</span>
+                        <span ng-show="eventItem.event_type != ''" class="eventItem_event_type">{{eventItem.event_type}}</span>
+                        <span class="" ng-show="eventItem.subjectList.length > 0 && eventItem.event_type != ''">| </span><span class="categories" ng-show="eventItem.subjectList.length > 0" ng-repeat="subjectObject in eventItem.subjectList">{{subjectObject}}{{$last ? '' : ', '}}</span></span>
 
                     </div>
                     <div class="eventlist-item-geo">

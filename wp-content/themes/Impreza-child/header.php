@@ -64,8 +64,14 @@ if (defined('COLUMNS_QTY_CLASS')) {
 $theme = wp_get_theme();
 $theme_version = str_replace('.', '-', $theme->get('Version'));
 $theme_class = 'us-theme_impreza_'.$theme_version;
+
+$ie_style_class = (preg_match('/(?i)msie/',$_SERVER['HTTP_USER_AGENT']))?'ie ':'';
+$ie9_style_class = (preg_match('/(?i)msie 9/',$_SERVER['HTTP_USER_AGENT']))?'ie9 ':'';
+
+$page_title_style_class = 'title_'.preg_replace('/\W+/', '', strtolower(get_the_title())).' ';
 ?>
-<body <?php body_class('l-body '.$theme_class.$woocommerce_class); ?><?php echo  ($body_background_styles_text != '')?' style="'.$body_background_styles_text.'"':''; ?>>
+
+<body <?php body_class('l-body ' .$page_title_style_class.$ie_style_class.$ie9_style_class.$theme_class.$woocommerce_class); ?><?php echo  ($body_background_styles_text != '')?' style="'.$body_background_styles_text.'"':''; ?>>
 <?php
 if (defined('IS_FULLWIDTH') AND IS_FULLWIDTH)
 {

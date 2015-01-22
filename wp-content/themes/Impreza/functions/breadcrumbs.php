@@ -7,7 +7,7 @@
 function us_breadcrumbs() {
 
 	/* === OPTIONS === */
-	$text['home']     = __('Home', 'us') ; // text for the 'Home' link
+	$text['home']     = 'För alla' ; // text for the 'Home' link
 	$text['category'] = __('Archive by Category "%s"', 'us'); // text for a category page
 	$text['search']   = __('Search Results for "%s" Query', 'us'); // text for a search results page
 	$text['tag']      = __('Posts Tagged "%s"', 'us'); // text for a tag page
