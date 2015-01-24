@@ -817,9 +817,8 @@ ul.eventlist > li{
     top: 37%;
 }
 
-.page .l-sidebar.at_right,
-.single .l-sidebar.at_right {
-    margin-top: 50px;
+.l-main > .l-submain > .l-submain-h > .l-content > .l-submain > .l-submain-h {
+    padding-top: 0;
 }
 
 .sharewidgets .fb_iframe_widget {
