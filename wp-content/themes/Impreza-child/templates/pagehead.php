@@ -114,7 +114,7 @@ if (in_array(rwmb_meta('us_titlebar'), array('', '  caption_only', 'startpage_he
                         if (rwmb_meta('us_subtitle') != '') { echo '<h2>'.rwmb_meta('us_subtitle').'</h2>'; } ?>
                     <?php if (rwmb_meta('us_titlebar') == '') { ?>
                         <!-- breadcrums -->
-                        <?php us_breadcrumbs(); ?>
+                        <?php custom_us_breadcrumbs(); ?>
                     <?php } ?>
                 <?php } ?>
 

@@ -168,7 +168,9 @@ wp_enqueue_script('comment-reply');
 					}
 				} ?>
 				<?php if (comments_open() || get_comments_number() != '0') { comments_template(); } ?>
+
 			</div>
+
 			<div class="l-sidebar at_left">
 				<?php if ($smof_data['post_sidebar_pos'] != 'Right') generated_dynamic_sidebar(); ?>
 			</div>

@@ -22,6 +22,8 @@ function us_breadcrumbs() {
 	$after       = '</span>'; // tag after the current crumb
 	/* === END OF OPTIONS === */
 
+	echo "NEEEEEJ";
+
 	global $post;
 	$homeLink = home_url() . '/';
 	$linkBefore = '<span typeof="v:Breadcrumb">';

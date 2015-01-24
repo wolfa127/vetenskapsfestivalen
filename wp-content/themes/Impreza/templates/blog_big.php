@@ -1,6 +1,8 @@
 <?php global $smof_data, $us_thumbnail_size; ?><div class="w-blog imgpos_attop">
 	<div class="w-blog-list">
 
+		hejhje
+
 		<?php
 		$temp = $wp_query; $wp_query= null;
 		$wp_query = new WP_Query(); $wp_query->query('paged='.$paged.'&post_type=post');

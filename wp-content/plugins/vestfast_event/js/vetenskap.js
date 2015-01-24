@@ -1,8 +1,8 @@
 jQuery(document).ready( function() {
 
     jQuery(".user_vote").click( function() {
-        post_id = jQuery(this).attr("data-post_id")
-        nonce = jQuery(this).attr("data-nonce")
+        post_id = jQuery(this).attr("data-post_id");
+        nonce = jQuery(this).attr("data-nonce");
 
         jQuery.ajax({
             type : "post",
@@ -24,4 +24,6 @@ jQuery(document).ready( function() {
 
     })
 
-})
+
+
+});

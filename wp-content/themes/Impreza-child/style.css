@@ -147,6 +147,12 @@ body.title_program .w-nav .w-nav-item:first-child .w-nav-anchor.level_1 .w-nav-t
     color: #FFFFFF;
     font-size: 3.9em;
 }
+
+.search .search_results .w-pagehead h1{
+    color: #000000;
+    font-size: 2em;
+}
+
 .w-pagehead h2{
     color: #FFFFFF;
     font-size: 2.4em;
@@ -200,7 +206,7 @@ text-transform: uppercase;
     font-size: 26px;
     font-weight: normal;
     border-radius: 0;
-    background-color: #000000;
+    background-color: #cccccc;
     display: inline-block;
     padding: 10px 20px;
     margin-right: 10px;
@@ -212,7 +218,7 @@ text-transform: uppercase;
 
 .filter-button-days > .weekDayName{
     display: block;
-    color: #FFFFFF;
+    color: #000000;
     padding-bottom: 7px;
 }
 
@@ -703,6 +709,14 @@ ul.eventlist > li{
     margin-top: 9em;
 }
 
+.sharewidgets .fb_iframe_widget {
+    top: -7px;
+}
+
+.shortblog-readmore {
+    margin-top: 50px;
+}
+
 @media only screen and (max-width: 1024px) {
 
     .fa-bars:after {
@@ -744,9 +758,6 @@ ul.eventlist > li{
         margin-left: 0px !important;
     }
 
-    .l-submain {
-        padding: 0px 40px;
-    }
 
     .w-shortblog.columns_2 .w-shortblog-list, .w-shortblog.columns_3 .w-shortblog-list {
         margin-left: 0;
@@ -776,6 +787,9 @@ ul.eventlist > li{
         margin-bottom: 30px;
     }
 
+    .sharewidgets .fb_iframe_widget {
+        top: -5px;
+    }
 
     .eventHeader{
         height: auto;
@@ -794,6 +808,15 @@ ul.eventlist > li{
         width: 76%;
     }
 
+    .eventlist-divider {
+        height: 75px;
+    }
+
+    .handIcon {
+        background-size: 100% auto;
+        width: 23px;
+        height: 37px;
+    }
 
     .eventlist-item {
         overflow: hidden;
@@ -865,6 +888,14 @@ ul.eventlist > li{
     .filter-button-days {
         width: 100%;
     }
+
+    .filter-button-days .weekDayName,
+    .filter-button-days .monthDate {
+        display: inline;
+        font-size: 0.7em;
+        padding: 0.3em;
+    }
+
     a.filter-button-subject:link, a.filter-button-subject:visited, a.filter-button-subject:hover, a.filter-button-subject:active {
         width: 100%;
     }

@@ -1,8 +1,8 @@
 var $jq = jQuery.noConflict();
 var myApp = angular.module('ngAppEvent',['ui.router','angularjs-dropdown-multiselect','angular-loading-bar','angular.filter', 'uiGmapgoogle-maps'])
     .run(
-        ['$rootScope', '$state', '$stateParams',
-            function ($rootScope,   $state,   $stateParams) {
+        ['$rootScope', '$state', '$stateParams','$location',
+            function ($rootScope,   $state,   $stateParams, $location) {
 
                 // It's very handy to add references to $state and $stateParams to the $rootScope
                 // so that you can access them from any scope within your applications.For example,
@@ -10,6 +10,7 @@ var myApp = angular.module('ngAppEvent',['ui.router','angularjs-dropdown-multise
                 // to active whenever 'contacts.list' or one of its decendents is active.
                 $rootScope.$state = $state;
                 $rootScope.$stateParams = $stateParams;
+
             }
         ]
     )
@@ -32,7 +33,6 @@ var myApp = angular.module('ngAppEvent',['ui.router','angularjs-dropdown-multise
                 // If the url is ever invalid, e.g. '/asdf', then redirect to '/' aka the home state
                 .otherwise('/');
 
-
             //////////////////////////
             // State Configurations //
             //////////////////////////
@@ -45,7 +45,7 @@ var myApp = angular.module('ngAppEvent',['ui.router','angularjs-dropdown-multise
             //////////
 
             .state("home", {
-                url: "",
+                url: "/",
                 templateUrl: pluginUrl + 'ang_templates/events.html',
                 controller: 'VetEventsController'
             })
@@ -58,8 +58,6 @@ var myApp = angular.module('ngAppEvent',['ui.router','angularjs-dropdown-multise
         }
     ]
 );
-
-
 
 
 myApp.config(function ($provide) {
@@ -82,9 +80,9 @@ myApp.config(function(uiGmapGoogleMapApiProvider) {
     });
 });
 
-
 myApp.filter('search', function($filter){
     return function(items, text){
+
         if (!text || text.length === 0)
             return items;
 
