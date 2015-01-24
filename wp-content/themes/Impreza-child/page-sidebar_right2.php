@@ -1,32 +1,43 @@
 <?php
 /*
-Template Name: Page: Sidebar Right 2
+Template Name: Page: Right Sidebar Menu
 */
 define('THEME_TEMPLATE', TRUE);
-define('SIDEBAR_POS', 'left');
+//define('THEME_TEMPLATE', TRUE);
+define('SIDEBAR_POS', 'right');
 get_header();
 global $smof_data, $us_shortcodes;
-
-// Disabling Section shortcode
-global $disable_section_shortcode;
-$disable_section_shortcode = TRUE;
+function get_sidebar_menu() {
+	global $post;
+	if ( is_page() && $post->post_parent )
+		$childpages = wp_list_pages( 'sort_column=menu_order&title_li=&child_of=' . $post->post_parent . '&echo=0' );
+	else
+		$childpages = wp_list_pages( 'sort_column=menu_order&title_li=&child_of=' . $post->ID . '&echo=0' );
+	if ( $childpages ) {
+		$string = '<ul>' . $childpages . '</ul>';
+	}
+	return $string;
+}
 ?>
-<?php if (have_posts()) : while(have_posts()) : the_post(); ?>
+<?php if (have_posts()) { while(have_posts()) { the_post(); ?>
+	<?php get_template_part( 'templates/pagehead' ); ?>
 	<div class="l-submain">
 		<div class="l-submain-h g-html i-cf">
 			<div class="l-content">
-				<?php the_content(__('Read More &raquo;', 'us')); ?>
-				<?php if (@$smof_data['page_comments'] == 1 AND (comments_open() || get_comments_number() != '0')) { comments_template(); } ?>
+				<?php the_content(); ?>
+
 			</div>
 			<div class="l-sidebar at_left">
+
 			</div>
 
 			<div class="l-sidebar at_right">
-				<?php get_sidebar('sidebar-2'); ?>
+				<?php echo get_sidebar_menu(); ?>
 			</div>
 		</div>
 	</div>
-<?php endwhile; else : ?>
+
+<?php }  } else { ?>
 	<?php _e('No posts were found.', 'us'); ?>
-<?php endif; ?>
+<?php } ?>
 <?php get_footer(); ?>
