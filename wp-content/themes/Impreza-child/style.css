@@ -198,9 +198,6 @@ text-transform: uppercase;
    line-height: 33px;
 }
 
-
-
-
 .filter-button-days {
     font-family: 'Varela Round';
     font-size: 26px;
@@ -296,6 +293,120 @@ a.filter-button-subject:active{
 }
 .filter-button-subject .checkIcon .fa {
     padding: 15px 10px 15px 15px;
+}
+
+.highlightSection {
+    clear: both;
+}
+
+.highlightSection h3 {
+    text-align: center;
+    font-family: Varela Round;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.highlightSection .highlightContainer {
+
+}
+
+.highlightSection .highlightContainer .highlightItem {
+    float: left;
+    margin-bottom: 3.33%;
+    margin-left: 3.33%;
+    width: 30%;
+}
+
+.highlightSection .highlightContainer .highlightItem:nth-child(3n+1) {
+    clear: left;
+}
+
+.highlightSection .highlightContainer .highlightItem:nth-child(3n-2) {
+    margin-left: 0;
+}
+
+.highlightSection .highlightContainer .highlightItem .highlightImage {
+}
+
+.highlightSection .highlightContainer .highlightItem .highlightImage a {
+    background: transparent url(http://vetenskapsfestivalen.stendahls.se/wp-content/uploads/2014/12/fingerprint.jpg) no-repeat scroll center center;
+    background-size: cover;
+    display: block;
+    height: 16em;
+    width: 100%;
+}
+
+.highlightSection .highlightContainer .highlightItem h6 {
+    font-size: 20px;
+    font-family: Varela Round;
+    font-weight: 400;
+    font-style: normal;
+    line-height: 1.1em;
+    margin-bottom: 0.25em;
+    text-align: left;
+}
+
+.highlightSection .highlightContainer .highlightItem h6 a {
+    border-bottom: 0 none transparent;
+    color: #000;
+    text-decoration: none;
+}
+
+.highlightSection .highlightContainer .highlightItem p {
+    margin-bottom: 0.25em;
+}
+
+.highlightSection .highlightContainer .highlightItem .meta {
+    line-height: 1em;
+}
+
+.highlightSection .highlightContainer .highlightItem .meta span {
+    font-size: 0.8em;
+    font-weight: bold;
+    margin-left: 2em;
+}
+
+.highlightSection .highlightContainer .highlightItem .meta span:first-child {
+    margin-left: 0;
+}
+
+.highlightSection .highlightContainer .highlightItem .meta span .fa-map-marker {
+    margin-right: 0.25em;
+}
+
+.highlightSection .highlightContainer .highlightItem .meta span.familyIcon {
+    background-size: auto 1.25em;
+    background-position: left center;
+}
+
+.highlightSection .highlightContainer .highlightItem .highlightDescription {
+    font: 14px/24px 'Open Sans', sans-serif;
+    height: 5em;
+    overflow: hidden;
+    position: relative;
+}
+
+.highlightSection .highlightContainer .highlightItem .highlightDescription .fadeOut {
+    background: -moz-linear-gradient(top,  rgba(255,255,255,0) 0%, rgba(255,255,255,1) 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,0)), color-stop(100%,rgba(255,255,255,1))); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  rgba(255,255,255,0) 0%,rgba(255,255,255,1) 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  rgba(255,255,255,0) 0%,rgba(255,255,255,1) 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  rgba(255,255,255,0) 0%,rgba(255,255,255,1) 100%); /* IE10+ */
+    background: linear-gradient(to bottom,  rgba(255,255,255,0) 0%,rgba(255,255,255,1) 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', endColorstr='#ffffff',GradientType=0 ); /* IE6-9 */
+    bottom: 0;
+    height: 2em;
+    left: 0;
+    position: absolute;
+    width: 100%;
+}
+
+.highlightSection .highlightContainer .highlightItem .highlightReadMore {
+    text-align: right;
+}
+
+.ng-scope .eventTopPart {
+    clear: both;
 }
 
 .ng-scope .eventTopPart h3 {
@@ -777,6 +888,29 @@ ul.eventlist > li{
     .w-shortblog.date_atleft .w-shortblog-entry-title, .w-shortblog.date_atleft .w-shortblog-entry-meta, .w-shortblog.date_atleft .w-shortblog-entry-short {
         margin-left: 110px;
     }
+
+    .highlightSection .highlightContainer .highlightItem {
+        float: left;
+        margin-bottom: 5%;
+        margin-left: 5%;
+        width: 47.5%;
+    }
+
+    .highlightSection .highlightContainer .highlightItem:nth-child(3n+1) {
+        clear: none;
+    }
+
+    .highlightSection .highlightContainer .highlightItem:nth-child(2n+1) {
+        clear: left;
+    }
+
+    .highlightSection .highlightContainer .highlightItem:nth-child(3n-2) {
+        margin-left: 5%;
+    }
+
+    .highlightSection .highlightContainer .highlightItem:nth-child(2n+1) {
+        margin-left: 0;
+    }
 }
 
 @media only screen and (max-width: 599px) {
@@ -939,6 +1073,29 @@ ul.eventlist > li{
     .g-html h2 {
         font-size: 1.3em !important;
         letter-spacing: -0.8px;
+    }
+
+    .highlightSection .highlightContainer .highlightItem {
+        float: none;
+        margin-bottom: 10%;
+        margin-left: 0;
+        width: 100%;
+    }
+
+    .highlightSection .highlightContainer .highlightItem:nth-child(3n+1) {
+        clear: none;
+    }
+
+    .highlightSection .highlightContainer .highlightItem:nth-child(2n+1) {
+        clear: none;
+    }
+
+    .highlightSection .highlightContainer .highlightItem:nth-child(3n-2) {
+        margin-left: 0;
+    }
+
+    .highlightSection .highlightContainer .highlightItem:nth-child(2n+1) {
+        margin-left: 0;
     }
 }
 

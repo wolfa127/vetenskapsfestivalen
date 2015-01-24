@@ -1,4 +1,22 @@
 
+    <div class="highlightSection" ng-show="(_highlightList).length != 0" class="eventlist" >
+        <h3>TIPS UR VECKANS PROGRAM</h3>
+
+        <div class="highlightContainer">
+            <div class="highlightItem" ng-if="eventItem.highlight == true" ng-repeat="eventItem in _eventList = (eventList | orderBy:'event_start':true)">
+                <div class="highlightImage"><a href="" ui-sref="event({eventId: {{eventItem.eventId}}})" style="background-image:url({{eventItem.image !== '' && eventItem.image || 'http://vetenskapsfestivalen.stendahls.se/wp-content/uploads/2014/12/fingerprint.jpg' }});"></a></div>
+                <h6><a href="" ui-sref="event({eventId: {{eventItem.eventId}}})" >{{eventItem.title}}</a></h6>
+                <p class="meta">
+                    <span>{{eventItem.event_start | dateToTime}}-{{eventItem.event_end | dateToTime}}</span>
+                    <span><i class="fa fa-map-marker"></i>{{eventItem.venue}}</span>
+                    <span ng-show="{{eventItem.family_activity}} == 1" class="familyIcon"></span>
+                </p>
+                <p class="highlightDescription">{{eventItem.description}}<span class="fadeOut"></span></p>
+                <p class="highlightReadMore"><a href="" ui-sref="event({eventId: {{eventItem.eventId}}})" >Läs mer</a></p>
+            </div>
+        </div>
+    </div>
+
     <div class="eventTopPart">
         <h3>FESTIVALDAGAR</h3>
         <p>Välj vilka dagar du vill se i programmet.</p>
@@ -7,7 +25,7 @@
     <div class="eventTopPart">
         <h3>PROGRAMKATEGORIER</h3>
         <p>Välj vilka olika kategorier programmet ska visa.</p>
-        <a ng-repeat="subject in subjectsListObjects" href=""  class="filter-button-subject" ng-click="filterSubjectClick()" ng-class="{'selected':subject.selected }" ><div class="checkIcon"><i class="fa fa-check"></i></div><span class="subject">{{subject.subject}}</span></a>
+        <a ng-repeat="subject in subjectsListObjects" href="" class="filter-button-subject" ng-click="filterSubjectClick()" ng-class="{'selected':subject.selected }" ><div class="checkIcon"><i class="fa fa-check"></i></div><span class="subject">{{subject.subject}}</span></a>
     </div>
 
     <div class="eventTopPart">
@@ -21,37 +39,6 @@
             <input class="input-text-search" type="text" placeholder="Sök på aktivitet" ng-model="searchText.$">
         </div>
     </div>
-
-    <ul ng-show="(_highlightList).length != 0" class="eventlist" >
-        <div class="eventlist-divider"><div><span class="handIcon"></span>Highlights</div></div>
-
-            <li ng-repeat="eventItemPerGroup in _ItemsToFilter = (ItemsToFilter() | filter: filterDaysGroup | filter: searchDays | orderBy:'event_start':false)">
-                <ul>
-                    <li ng-repeat="eventItem in _eventList = (eventList | filter:{event_dategroup: eventItemPerGroup.event_dategroup} | filter:searchSubjects | filter: searchVenues | filter: searchDays | filter: searchFamilyFilter | search:searchText.$| orderBy:'event_start':false)">
-
-                        <div class="eventlist-item" ng-if="eventItem.highlight == true">
-                            <a href="" ui-sref="event({eventId: {{eventItem.eventId}}})" >
-                                <div class="eventlist-item-timebox">
-                                    <i class="fa fa-clock-o"></i>
-                                    <span>{{eventItem.event_start | dateToTime}}-{{eventItem.event_end | dateToTime}}</span>
-                                </div>
-                                <div class="eventlist-item-content">
-                                    <span class="eventItem_title">{{eventItem.title}}</span>
-                                    <span ng-show="eventItem.event_type != ''" class="eventItem_event_type">{{eventItem.event_type}}</span>
-                                    <span class="" ng-show="eventItem.subjectList.length > 0 && eventItem.event_type != ''">| </span><span class="categories" ng-show="eventItem.subjectList.length > 0" ng-repeat="subjectObject in eventItem.subjectList">{{subjectObject}}{{$last ? '' : ', '}}</span></span>
-
-                                </div>
-                                <div class="eventlist-item-geo">
-                                    <i class="fa fa-map-marker"></i>{{eventItem.venue}}
-                                </div>
-                                <div class="eventlist-item-family"><span ng-show="{{eventItem.family_activity}} == 1" class="familyIcon"></span></div>
-                            </a>
-                        </div>
-
-                    </li>
-                </ul>
-            </li>
-    </ul>
 
     <ul ng-show="(_eventList).length != 0" class="eventlist" ng-repeat="eventItemPerGroup in _ItemsToFilter = (ItemsToFilter() | filter: filterDaysGroup | filter: searchDays | orderBy:'event_start':false)">
         <div class="eventlist-divider">

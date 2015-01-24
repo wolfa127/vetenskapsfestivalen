@@ -304,6 +304,7 @@ myApp.controller('VetShowEventController', function ($scope,$stateParams, eventS
         eventService.getEventbyId(id)
             .then(function (myEvent) {
                 $scope.getEventUrl();
+
                 $scope.eventData = myEvent[0];
                 if($scope.eventData.geo_position != "" ){
                     createDataMarker($scope.eventData);
