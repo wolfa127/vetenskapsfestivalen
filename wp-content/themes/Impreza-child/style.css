@@ -183,6 +183,8 @@ body.title_program .w-nav .w-nav-item:first-child .w-nav-anchor.level_1 .w-nav-t
 
 .w-pagehead .g-breadcrumbs a, .w-pagehead .g-breadcrumbs{
 color: #FFFFFF;
+    margin-top: 0;
+    margin-bottom: 0;
 text-transform: uppercase;
 }
 
@@ -539,7 +541,7 @@ a.filter-button-subject.venue:active{
 }
 
 .family-filter.filter-button-subject.venue .familyIcon{
-    background-image: url("img/family_icon.png");
+    background-image: url("img/family_icon.svg");
     background-position: 1em 40%;
     display: inline;
     height: auto;
@@ -549,7 +551,7 @@ a.filter-button-subject.venue:active{
 }
 
 .family-filter.filter-button-subject.venue:hover .familyIcon{
-    background-image: url("img/family_icon_orange.png");
+    background-image: url("img/family_icon_orange.svg");
 }
 
 
@@ -590,7 +592,7 @@ ul.eventlist {
 }
 
 .handIcon{
-    background: url('img/fingers_divider.png') no-repeat 0px 0px;
+    background: url('img/fingers_divider.svg') no-repeat 0px 0px;
     width: 47px;
     height: 75px;
     display: inline-block;
@@ -598,7 +600,8 @@ ul.eventlist {
     margin-right: 20px;
 }
 .familyIcon{
-    background: url('img/family_icon_orange.png') no-repeat 0px 0px;
+    background: url('img/family_icon_orange.svg') no-repeat 0px 0px;
+    background-size: auto 100%;
     width: 33px;
     height: 22px;
     display: inline-block;
@@ -784,7 +787,7 @@ ul.eventlist > li{
     width: 63px;
     height: 82px;
     display: inline-block;
-    background: url('../../plugins/vestfast_event/img/fingers_divider.png') no-repeat top left;
+    background: url('../../plugins/vestfast_event/img/fingers_divider.svg') no-repeat top left;
 }
 
 .eventHeader .title{
@@ -808,7 +811,7 @@ ul.eventlist > li{
     display: block;
     color: #ffffff;
     vertical-align: top;
-    background: url('../../plugins/vestfast_event/img/family_icon_orange.png') no-repeat 0px 0px;
+    background: url('../../plugins/vestfast_event/img/family_icon_orange.svg') no-repeat 0px 0px;
     float: right;
     height: 25px;
     position: absolute;
