@@ -300,10 +300,11 @@ a.filter-button-subject:active{
 }
 
 .highlightSection h3 {
-    text-align: center;
     font-family: Varela Round;
     font-weight: 400;
     font-style: normal;
+    margin-bottom: 1.5em;
+    text-align: center;
 }
 
 .highlightSection .highlightContainer {
@@ -312,9 +313,9 @@ a.filter-button-subject:active{
 
 .highlightSection .highlightContainer .highlightItem {
     float: left;
-    margin-bottom: 3.33%;
-    margin-left: 3.33%;
-    width: 30%;
+    margin-bottom: 4.5%;
+    margin-left: 4.5%;
+    width: 30.33%;
 }
 
 .highlightSection .highlightContainer .highlightItem:nth-child(3n+1) {
@@ -332,7 +333,7 @@ a.filter-button-subject:active{
     background: transparent url(http://vetenskapsfestivalen.stendahls.se/wp-content/uploads/2014/12/fingerprint.jpg) no-repeat scroll center center;
     background-size: cover;
     display: block;
-    height: 16em;
+    height: 14em;
     width: 100%;
 }
 
@@ -363,7 +364,7 @@ a.filter-button-subject:active{
 .highlightSection .highlightContainer .highlightItem .meta span {
     font-size: 0.8em;
     font-weight: bold;
-    margin-left: 2em;
+    margin-left: 1em;
 }
 
 .highlightSection .highlightContainer .highlightItem .meta span:first-child {
@@ -816,8 +817,8 @@ ul.eventlist > li{
     top: 37%;
 }
 
-.single .l-sidebar.at_right {
-    margin-top: 9em;
+.l-main > .l-submain > .l-submain-h > .l-content > .l-submain > .l-submain-h {
+    padding-top: 0;
 }
 
 .sharewidgets .fb_iframe_widget {
@@ -847,6 +848,7 @@ ul.eventlist > li{
 }
 
 @media only screen and (max-width: 980px) {
+    .page .l-sidebar.at_right,
     .single .l-sidebar.at_right {
         margin-top: 0;
     }

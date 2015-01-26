@@ -7,7 +7,7 @@
                 <div class="highlightImage"><a href="" ui-sref="event({eventId: {{eventItem.eventId}}})" style="background-image:url({{eventItem.image !== '' && eventItem.image || 'http://vetenskapsfestivalen.stendahls.se/wp-content/uploads/2014/12/fingerprint.jpg' }});"></a></div>
                 <h6><a href="" ui-sref="event({eventId: {{eventItem.eventId}}})" >{{eventItem.title}}</a></h6>
                 <p class="meta">
-                    <span>{{eventItem.event_start | dateToTime}}-{{eventItem.event_end | dateToTime}}</span>
+                    <span>{{eventItem.event_start | dateToDateText}}, {{eventItem.event_start | dateToTime}}</span>
                     <span><i class="fa fa-map-marker"></i>{{eventItem.venue}}</span>
                     <span ng-show="{{eventItem.family_activity}} == 1" class="familyIcon"></span>
                 </p>
