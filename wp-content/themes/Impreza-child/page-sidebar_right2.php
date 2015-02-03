@@ -57,7 +57,7 @@ function get_sidebar_menu() {
 
 			</div>
 
-			<div class="l-sidebar at_right">
+			<div class="l-sidebar at_right sidebar_menu">
 				<?php echo get_sidebar_menu(); ?>
 			</div>
 		</div>

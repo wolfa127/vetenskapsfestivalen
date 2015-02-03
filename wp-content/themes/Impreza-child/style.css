@@ -832,6 +832,34 @@ ul.eventlist > li{
     margin-top: 50px;
 }
 
+.col_contside .sidebar_menu h6,
+.col_contside .sidebar_menu ul {
+    background-color: #dddddd;
+    padding: 5% 7%;
+    width: 100%;
+}
+
+.col_contside .sidebar_menu h6 {
+    border-bottom: 1px solid #ffffff;
+    margin-bottom: 0;
+    text-transform: uppercase;
+}
+
+.col_contside .sidebar_menu ul {
+    list-style: none;
+    margin-bottom: 0;
+    margin-left: 0;
+}
+
+.col_contside .sidebar_menu ul li {
+    margin-top: 0.2em;
+    margin-bottom: 0;
+}
+
+.col_contside .sidebar_menu ul li:first-child {
+    margin-top: 0;
+}
+
 @media only screen and (max-width: 1024px) {
 
     .fa-bars:after {
@@ -915,6 +943,11 @@ ul.eventlist > li{
 
     .highlightSection .highlightContainer .highlightItem:nth-child(2n+1) {
         margin-left: 0;
+    }
+
+    .col_contside .sidebar_menu h6,
+    .col_contside .sidebar_menu ul {
+        padding: 3% 4%;
     }
 }
 
