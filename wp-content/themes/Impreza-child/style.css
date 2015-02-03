@@ -1233,7 +1233,10 @@ ul.eventlist > li{
 }
 
 .sharewidgets{
+    border-bottom: 1px solid #bfbfbf;
     clear:left;
+    margin-bottom: 1em;
+    text-align: right;
 }
 
 

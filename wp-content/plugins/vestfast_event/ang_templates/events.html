@@ -4,7 +4,7 @@
 
         <div class="highlightContainer">
             <div class="highlightItem" ng-if="eventItem.highlight == true" ng-repeat="eventItem in _eventList = (eventList | orderBy:'event_start':true)">
-                <div class="highlightImage"><a href="" ui-sref="event({eventId: {{eventItem.eventId}}})" style="background-image:url({{eventItem.image !== '' && eventItem.image || 'http://vetenskapsfestivalen.stendahls.se/wp-content/uploads/2014/12/fingerprint.jpg' }});"></a></div>
+                <div class="highlightImage"><a href="" ui-sref="event({eventId: {{eventItem.eventId}}})" style="background-image:url({{eventItem.image_url || 'http://vetenskapsfestivalen.stendahls.se/wp-content/uploads/2014/12/fingerprint.jpg'}});"></a></div>
                 <h6><a href="" ui-sref="event({eventId: {{eventItem.eventId}}})" >{{eventItem.title}}</a></h6>
                 <p class="meta">
                     <span>{{eventItem.event_start | dateToDateText}}, {{eventItem.event_start | dateToTime}}</span>

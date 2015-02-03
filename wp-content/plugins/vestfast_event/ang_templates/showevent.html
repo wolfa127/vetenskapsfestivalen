@@ -29,14 +29,14 @@
             <h1>{{eventData.title}} </h1>
             <h3 class="orange">{{eventData.event_type}} </h3>
             <p>{{eventData.description}}</p>
+            <p><span class="crew bold">Medverkande: </span>{{eventData.crew}}</p>
+            <p ng-show="eventData.links.length > 0"><span class="links bold">Relaterade Länkar: </span><span ng-repeat="link in eventData.links"><a href="{{link.url}}">{{link.title}}</a>{{$last ? '' : ', '}}</span></p>
+            <p ng-show="eventData.subjectList.length > 0"><span class="crew bold">Programkategorier: </span><span ng-repeat="subjectObject in eventData.subjectList">{{subjectObject.subject}}{{$last ? '' : ', '}}</span></p>
             <div class="sharewidgets">
                 <div id="facebookShare" class="fb-share-button" data-href="{{$location.path();}}" data-layout="button"></div>
                 <a href="https://twitter.com/share" class="twitter-share-button" data-count="none">Tweet</a>
                 <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
             </div>
-            <p><span class="crew bold">Medverkande: </span>{{eventData.crew}}</p>
-            <p ng-show="eventData.links.length > 0"><span class="links bold">Relaterade Länkar: </span><span ng-repeat="link in eventData.links"><a href="{{link.url}}">{{link.title}}</a>{{$last ? '' : ', '}}</span></p>
-            <p ng-show="eventData.subjectList.length > 0"><span class="crew bold">Programkategorier: </span><span ng-repeat="subjectObject in eventData.subjectList">{{subjectObject.subject}}{{$last ? '' : ', '}}</span></p>
             <p><span class="crew bold">Närmasta hållplats: </span>{{eventData.closest_public_transport}}</p>
         </div>
 
