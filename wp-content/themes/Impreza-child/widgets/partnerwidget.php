@@ -25,16 +25,20 @@ class Partners_Widget extends WP_Widget {
             </div>
 
             <div class="partners-secondary">
-                <span class="partnerheader">PARTNERS</span>
+                <span class="partnerheader">HEJ PARTNERS</span>
                 <?php
-                $args = array( 'post_type' => 'partners' );
+                $args = array( 'post_type' => 'partners', 'posts_per_page' => 1000 );
                 $loop = new WP_Query( $args );
+                $postCount = 0;
                 while ( $loop->have_posts() ) : $loop->the_post();
                     the_content();
                     $pname = types_render_field( "partnername", array());
-                    echo "<span class='partnername'>" . $pname;
-                    echo " <i class='fa fa-circle'></i> ";
-                    echo "</span>";
+
+                    if (++$postCount == 1) {
+                        echo "<span class='partnername'></i> " . $pname . "</span>";
+                    } else {
+                        echo "<span class='partnername'><i class='fa fa-circle'></i> " . $pname . "</span>";
+                    }
                 endwhile;
                 ?>
             </div>

@@ -138,6 +138,10 @@ body.title_program .w-nav .w-nav-item:first-child .w-nav-anchor.level_1 .w-nav-t
 }
 
 
+.w-nav-anchor.level_1 .w-nav-title {
+    text-transform: uppercase;
+}
+
 /* HEADER */
 
 .w-pagehead{
@@ -873,12 +877,19 @@ ul.eventlist > li{
         content: "Menu";
     }
 
-    .ew-logo {
+    .ew-logo .ew-logo-img {
         display: none;
     }
 }
 
 @media only screen and (max-width: 980px) {
+
+
+    .l-main > .l-submain:not(:first-child) {
+        padding-right: 0;
+        padding-left: 0;
+    }
+
     .page .l-sidebar.at_right,
     .single .l-sidebar.at_right {
         margin-top: 0;
@@ -952,6 +963,10 @@ ul.eventlist > li{
 }
 
 @media only screen and (max-width: 599px) {
+
+    .l-main > .l-submain > .l-submain-h {
+        padding-bottom: 0;
+    }
 
     .l-submain-h.g-html .g-cols > div.one-third {
         width: 100% !important;
@@ -1099,6 +1114,12 @@ ul.eventlist > li{
 
     .family-filter.filter-button-subject.venue {
         padding-right: 0;
+    }
+
+    .col_contside .sidebar_menu ul li a {
+        display: block;
+        padding-top: 0.5em;
+        padding-bottom: 0.5em;
     }
 }
 
