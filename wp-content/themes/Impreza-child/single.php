@@ -60,8 +60,12 @@ wp_enqueue_script('comment-reply');
 					</div>
 					<div class="w-blog-content">
 
-						<?php
-						if ($post_format == 'quote')
+                        <?php
+                        if ( has_post_thumbnail() ) { // check if the post has a Post Thumbnail assigned to it.
+                            the_post_thumbnail();
+                        }
+
+                        if ($post_format == 'quote')
 						{
 							?><div class="w-blog-title entry-title">
 								<blockquote><?php the_title(); ?></blockquote>

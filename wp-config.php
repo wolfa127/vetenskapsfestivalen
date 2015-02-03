@@ -19,16 +19,16 @@ if ( !defined('ABSPATH') )
 
 // ** MySQL settings - You can get this info from your web host ** //
 /** The name of the database for WordPress */
-define('DB_NAME', 'vetenskapsfestivalen');
-//define('DB_NAME', 'vetensk1_wp');
+//define('DB_NAME', 'vetenskapsfestivalen');
+define('DB_NAME', 'vetensk1_wp');
 
 /** MySQL database username */
-define('DB_USER', 'root');
-//define('DB_USER', 'vetensk1_root');
+//define('DB_USER', 'root');
+define('DB_USER', 'vetensk1_root');
 
 /** MySQL database password */
-define('DB_PASSWORD', 'root');
-//define('DB_PASSWORD', 'Cool163@v');
+//define('DB_PASSWORD', 'root');
+define('DB_PASSWORD', 'Cool163@v');
 
 /** MySQL hostname */
 define('DB_HOST', 'localhost');
@@ -74,18 +74,8 @@ $table_prefix  = 'wp_';
  * It is strongly recommended that plugin and theme developers use WP_DEBUG
  * in their development environments.
  */
-
-// Turns WordPress debugging on
-define('WP_DEBUG', true);
-
-// Tells WordPress to log everything to the /wp-content/debug.log file
-define('WP_DEBUG_LOG', true);
-
-// Doesn't force the PHP 'display_errors' variable to be on
-define('WP_DEBUG_DISPLAY', true);
-
-// Hides errors from being displayed on-screen
-//@ini_set('display_errors', 0);
+//define('WP_DEBUG', true);
+//define('WP_DEBUG_LOG', true);
 
 /* That's all, stop editing! Happy blogging. */
 
