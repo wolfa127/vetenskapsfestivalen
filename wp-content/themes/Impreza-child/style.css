@@ -839,7 +839,7 @@ ul.eventlist > li{
 .col_contside .sidebar_menu h6,
 .col_contside .sidebar_menu ul {
     background-color: #dddddd;
-    padding: 5% 7%;
+    padding: 1em 1.2em;
     width: 100%;
 }
 
@@ -853,15 +853,22 @@ ul.eventlist > li{
     list-style: none;
     margin-bottom: 0;
     margin-left: 0;
+    padding: 0;
 }
 
 .col_contside .sidebar_menu ul li {
     margin-top: 0.2em;
     margin-bottom: 0;
+    padding: 0 1.2em 0.6em;
 }
 
 .col_contside .sidebar_menu ul li:first-child {
     margin-top: 0;
+    padding-top: 1.2em;
+}
+
+.col_contside .sidebar_menu ul li:last-child {
+    padding-bottom: 1.2em;
 }
 
 @media only screen and (max-width: 1024px) {
@@ -884,10 +891,13 @@ ul.eventlist > li{
 
 @media only screen and (max-width: 980px) {
 
-
-    .l-main > .l-submain:not(:first-child) {
+    .l-main > .l-submain:not(:first-child) .l-submain {
         padding-right: 0;
         padding-left: 0;
+    }
+
+    .l-main > .l-submain:not(:first-child) > .l-submain-h {
+        padding-bottom: 0;
     }
 
     .page .l-sidebar.at_right,
@@ -956,17 +966,53 @@ ul.eventlist > li{
         margin-left: 0;
     }
 
+
+    .col_contside .sidebar_menu {
+        margin-bottom: 2em;
+    }
+
     .col_contside .sidebar_menu h6,
+    .col_contside .sidebar_menu h6:hover {
+        cursor: pointer;
+        transition: color 0.3s ease 0s;
+    }
+
+    .col_contside .sidebar_menu h6:hover {
+        color: #FFAF36;
+    }
+
+    .col_contside .sidebar_menu h6::before {
+        content: "";
+        font-family: FontAwesome;
+        font-style: normal;
+        font-weight: normal;
+        line-height: 1;
+        font-size-adjust: none;
+        font-stretch: normal;
+        font-feature-settings: normal;
+        font-language-override: normal;
+        font-kerning: auto;
+        font-synthesis: weight style;
+        font-variant: normal;
+        font-size: inherit;
+        text-rendering: auto;
+        -moz-osx-font-smoothing: grayscale;
+        -webkit-font-smoothing: antialiased;
+        margin-right: 0.5em;
+    }
+
     .col_contside .sidebar_menu ul {
-        padding: 3% 4%;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 1s ease 0s;
+    }
+
+    .col_contside .sidebar_menu.open ul {
+        max-height: 300px;
     }
 }
 
 @media only screen and (max-width: 599px) {
-
-    .l-main > .l-submain > .l-submain-h {
-        padding-bottom: 0;
-    }
 
     .l-submain-h.g-html .g-cols > div.one-third {
         width: 100% !important;
@@ -1114,6 +1160,16 @@ ul.eventlist > li{
 
     .family-filter.filter-button-subject.venue {
         padding-right: 0;
+    }
+
+    .col_contside .sidebar_menu ul {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.75s ease 0s;
+    }
+
+    .col_contside .sidebar_menu.open ul {
+        max-height: 450px;
     }
 
     .col_contside .sidebar_menu ul li a {

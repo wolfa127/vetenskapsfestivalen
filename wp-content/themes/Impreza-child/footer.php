@@ -80,6 +80,7 @@ if ( ! defined('THEME_TEMPLATE') AND FALSE) { ?>
 
 
 </div>
+
 <!-- /FOOTER -->
 <a class="w-toplink" href="#"><i class="fa fa-angle-up"></i></a>
 <?php

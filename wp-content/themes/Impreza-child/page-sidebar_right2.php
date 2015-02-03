@@ -47,8 +47,14 @@ function get_sidebar_menu() {
 
 <?php if (have_posts()) { while(have_posts()) { the_post(); ?>
 	<?php get_template_part( 'templates/pagehead' ); ?>
+
 	<div class="l-submain">
 		<div class="l-submain-h g-html i-cf">
+
+            <div class="l-sidebar at_right sidebar_menu">
+                <?php echo get_sidebar_menu(); ?>
+            </div>
+
 			<div class="l-content">
 				<?php the_content(); ?>
 
@@ -56,12 +62,20 @@ function get_sidebar_menu() {
 			<div class="l-sidebar at_left">
 
 			</div>
-
-			<div class="l-sidebar at_right sidebar_menu">
-				<?php echo get_sidebar_menu(); ?>
-			</div>
 		</div>
 	</div>
+
+    <script type="text/javascript">
+        jQuery(document).ready(function(){
+            jQuery('.sidebar_menu h6').on('click',function(event){
+                jQuery('.sidebar_menu').toggleClass('open');
+                return false;
+            }).on('touchstart',function(event){
+                jQuery('.sidebar_menu').toggleClass('open');
+                return false;
+            });
+        });
+    </script>
 
 <?php }  } else { ?>
 	<?php _e('No posts were found.', 'us'); ?>
