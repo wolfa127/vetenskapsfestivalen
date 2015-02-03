@@ -19,16 +19,16 @@ if ( !defined('ABSPATH') )
 
 // ** MySQL settings - You can get this info from your web host ** //
 /** The name of the database for WordPress */
-//define('DB_NAME', 'vetenskapsfestivalen');
-define('DB_NAME', 'vetensk1_wp');
+define('DB_NAME', 'vetenskapsfestivalen');
+//define('DB_NAME', 'vetensk1_wp');
 
 /** MySQL database username */
-//define('DB_USER', 'root');
-define('DB_USER', 'vetensk1_root');
+define('DB_USER', 'root');
+//define('DB_USER', 'vetensk1_root');
 
 /** MySQL database password */
-//define('DB_PASSWORD', 'root');
-define('DB_PASSWORD', 'Cool163@v');
+define('DB_PASSWORD', 'root');
+//define('DB_PASSWORD', 'Cool163@v');
 
 /** MySQL hostname */
 define('DB_HOST', 'localhost');

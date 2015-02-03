@@ -240,10 +240,9 @@ if(!class_exists('WP_Plugin_Template_Settings'))
 
         function getEventDatabase(){
             $this  -> deleteEventDatabase();
-            $buildUrl = "http://" . get_option('vetfast_event')['vetfest_username'] . ":" . get_option('vetfast_event')['vetfest_pwd'] . "@" . get_option('vetfast_event')['vetfest_url'];
-            //$url = "http://vetfest:boka75klasser@hebe.premium.se/aktiviteter/ws.php";
+            $vetenskaps_options = get_option('vetfast_event');
+            $buildUrl = "http://" . $vetenskaps_options['vetfest_username'] . ":" . $vetenskaps_options['vetfest_pwd'] . "@" . $vetenskaps_options['vetfest_url'];
             $url = $buildUrl;
-            //$url = "/testdata.xml";
             $xml = file_get_contents($url);
             $data = new SimpleXMLElement($xml);
             global $wpdb;
