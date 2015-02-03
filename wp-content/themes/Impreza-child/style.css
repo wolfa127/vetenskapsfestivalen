@@ -1151,8 +1151,11 @@ ul.eventlist > li{
 .entry-content .partners-main{
     margin-bottom: 30px;
 }
-
+img.entry-content-mainpartner{
+    width: 100px !important;
+}
 .entry-content .partners-main > img.entry-content-mainpartner {
+    width: 100px !important;
     margin: 20px 20px 20px 20px;
     vertical-align: middle;
 

@@ -182,7 +182,7 @@ if (!class_exists('Vetfast_event')) {
                 if(array_key_exists($myEvents['eventId'], $resultObj)){
                     $results[$key]['subjectList'] = $resultObj[$myEvents['eventId']];
                 }else{
-                    $results[$key]['subjectList'] = [];
+                    $results[$key]['subjectList'] = array();
                 }
             }
 
