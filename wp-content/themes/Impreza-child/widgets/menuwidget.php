@@ -27,7 +27,7 @@ class Menu_Widget extends WP_Widget {
             <div class="partners-secondary">
                 <span class="partnerheader">PARTNERS</span>
                 <?php
-                $args = array( 'post_type' => 'partners' );
+                $args = array( 'post_type' => 'partners', 'posts_per_page' => 3 );
                 $loop = new WP_Query( $args );
                 while ( $loop->have_posts() ) : $loop->the_post();
                     the_content();

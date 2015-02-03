@@ -138,6 +138,10 @@ body.title_program .w-nav .w-nav-item:first-child .w-nav-anchor.level_1 .w-nav-t
 }
 
 
+.w-nav-anchor.level_1 .w-nav-title {
+    text-transform: uppercase;
+}
+
 /* HEADER */
 
 .w-pagehead{
@@ -832,6 +836,34 @@ ul.eventlist > li{
     margin-top: 50px;
 }
 
+.col_contside .sidebar_menu h6,
+.col_contside .sidebar_menu ul {
+    background-color: #dddddd;
+    padding: 5% 7%;
+    width: 100%;
+}
+
+.col_contside .sidebar_menu h6 {
+    border-bottom: 1px solid #ffffff;
+    margin-bottom: 0;
+    text-transform: uppercase;
+}
+
+.col_contside .sidebar_menu ul {
+    list-style: none;
+    margin-bottom: 0;
+    margin-left: 0;
+}
+
+.col_contside .sidebar_menu ul li {
+    margin-top: 0.2em;
+    margin-bottom: 0;
+}
+
+.col_contside .sidebar_menu ul li:first-child {
+    margin-top: 0;
+}
+
 @media only screen and (max-width: 1024px) {
 
     .fa-bars:after {
@@ -845,12 +877,19 @@ ul.eventlist > li{
         content: "Menu";
     }
 
-    .ew-logo {
+    .ew-logo .ew-logo-img {
         display: none;
     }
 }
 
 @media only screen and (max-width: 980px) {
+
+
+    .l-main > .l-submain:not(:first-child) {
+        padding-right: 0;
+        padding-left: 0;
+    }
+
     .page .l-sidebar.at_right,
     .single .l-sidebar.at_right {
         margin-top: 0;
@@ -916,9 +955,18 @@ ul.eventlist > li{
     .highlightSection .highlightContainer .highlightItem:nth-child(2n+1) {
         margin-left: 0;
     }
+
+    .col_contside .sidebar_menu h6,
+    .col_contside .sidebar_menu ul {
+        padding: 3% 4%;
+    }
 }
 
 @media only screen and (max-width: 599px) {
+
+    .l-main > .l-submain > .l-submain-h {
+        padding-bottom: 0;
+    }
 
     .l-submain-h.g-html .g-cols > div.one-third {
         width: 100% !important;
@@ -1066,6 +1114,12 @@ ul.eventlist > li{
 
     .family-filter.filter-button-subject.venue {
         padding-right: 0;
+    }
+
+    .col_contside .sidebar_menu ul li a {
+        display: block;
+        padding-top: 0.5em;
+        padding-bottom: 0.5em;
     }
 }
 
