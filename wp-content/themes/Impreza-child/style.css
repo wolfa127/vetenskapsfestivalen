@@ -1110,6 +1110,7 @@ ul.eventlist > li{
         display: block;
         float: left;
         border-left: none;
+        word-break: break-word;
     }
 
     .eventlist-item-family {

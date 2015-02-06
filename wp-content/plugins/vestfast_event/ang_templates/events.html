@@ -1,10 +1,10 @@
 
-    <div class="highlightSection" ng-show="(_highlightList).length != 0" class="eventlist" >
+    <div class="highlightSection" ng-show="_eventListHighlights.length != 0" class="eventlist" >
         <h3>TIPS UR VECKANS PROGRAM</h3>
 
         <div class="highlightContainer">
-            <div class="highlightItem" ng-if="eventItem.highlight == true" ng-repeat="eventItem in _eventList = (eventList | orderBy:'event_start':true)">
-                <div class="highlightImage"><a href="" ui-sref="event({eventId: {{eventItem.eventId}}})" style="background-image:url({{eventItem.image_url || 'http://vetenskapsfestivalen.stendahls.se/wp-content/uploads/2014/12/fingerprint.jpg'}});"></a></div>
+            <div class="highlightItem" ng-repeat="eventItem in _eventListHighlights = (eventList |filter:{highlight: 1} |orderBy:'event_start':true)">
+                <div class="highlightImage"><a href="" ui-sref="event({eventId: {{eventItem.eventId}}})" style="background-image:url({{eventItem.image_url}});"></a></div>
                 <h6><a href="" ui-sref="event({eventId: {{eventItem.eventId}}})" >{{eventItem.title}}</a></h6>
                 <p class="meta">
                     <span>{{eventItem.event_start | dateToDateText}}, {{eventItem.event_start | dateToTime}}</span>
@@ -67,7 +67,7 @@
                     <span class="" ng-show="eventItem.subjectList.length > 0 && eventItem.event_type != ''">| </span><span class="categories" ng-show="eventItem.subjectList.length > 0" ng-repeat="subjectObject in eventItem.subjectList">{{subjectObject}}{{$last ? '' : ', '}}</span></span>
 
                 </div>
-                <div class="eventlist-item-geo">
+                <div class="eventlist-item-geo"  ng-show="eventItem.venue.length > 0">
                     <i class="fa fa-map-marker"></i>{{eventItem.venue}}
                 </div>
                 <div class="eventlist-item-family"><span ng-show="{{eventItem.family_activity}} == 1" class="familyIcon"></span></div>

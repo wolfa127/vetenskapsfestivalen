@@ -45,7 +45,7 @@
             <p ng-show="eventData.closest_public_transport.length > 0"><span class="crew bold">Närmasta hållplats: </span>{{eventData.closest_public_transport}}</p>
         </div>
 
-        <div id="map_canvas" ng-show="eventData.gmap.map != undefined">
+        <div id="map_canvas" ng-show="eventData.gmap.map != undefined" class="">
             <ui-gmap-google-map center="eventData.gmap.map.center" zoom="eventData.gmap.map.zoom" draggable="true" options="options">
                 <ui-gmap-marker coords="eventData.gmap.marker.coords" options="eventData.gmap.marker.options" events="eventData.gmap.marker.events" idkey="eventData.gmap.marker.id">
                 </ui-gmap-marker>

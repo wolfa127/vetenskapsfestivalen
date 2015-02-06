@@ -59,8 +59,8 @@ myApp.config(function ($provide) {
         return function (uiViewElement) {
             // var top = uiViewElement.getBoundingClientRect().top;
             //window.scrollTo(200, 0);
-            var scrollToElement = document.getElementById("searchstart");
-            console.log(scrollToElement);
+            //var scrollToElement = document.getElementById("searchstart");
+            //console.log(scrollToElement);
             //window.scrollTo(0, 0);
 
             // Or some other custom behaviour...
