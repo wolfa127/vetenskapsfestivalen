@@ -336,7 +336,7 @@ a.filter-button-subject:active{
 }
 
 .highlightSection .highlightContainer .highlightItem .highlightImage a {
-    background: transparent url(http://vetenskapsfestivalen.stendahls.se/wp-content/uploads/2014/12/fingerprint.jpg) no-repeat scroll center center;
+    background: transparent url('img/head_finger.gif') no-repeat scroll center center;
     background-size: cover;
     display: block;
     height: 14em;
@@ -549,7 +549,7 @@ a.filter-button-subject.venue:active{
     background-position: 1em 40%;
     display: inline;
     height: auto;
-    padding-left: 3.5em;
+    padding-left: 4em;
     vertical-align: middle;
     width: auto;
 }
@@ -681,6 +681,17 @@ ul.eventlist > li{
     background-color: #fcf0db;
 }
 
+
+.eventlist-item-timebox2 {
+    background-color: #000000;
+    border: 1px solid #000000;
+    color: #FFFFFF;
+    display: inline-block;
+    border-right: none;
+    padding: 0px;
+    text-align: center;
+}
+
 .eventlist-item-timebox {
     background-color: #000000;
     border: 1px solid #000000;
@@ -791,7 +802,7 @@ ul.eventlist > li{
     width: 63px;
     height: 82px;
     display: inline-block;
-    background: url('../../plugins/vestfast_event/img/fingers_divider.svg') no-repeat top left;
+    background: url('img/fingers_divider.svg') no-repeat top left;
 }
 
 .eventHeader .title{
@@ -805,6 +816,7 @@ ul.eventlist > li{
     color: #ffffff;
     font-size: 19px;
     margin-bottom: 0px;
+    display: inline-block;
 }
 
 .eventHeader .title span{
@@ -815,7 +827,7 @@ ul.eventlist > li{
     display: block;
     color: #ffffff;
     vertical-align: top;
-    background: url('../../plugins/vestfast_event/img/family_icon_orange.svg') no-repeat 0px 0px;
+    background: url('img/family_icon_orange.svg') no-repeat 0px 0px;
     float: right;
     height: 25px;
     position: absolute;
@@ -1420,4 +1432,9 @@ img.entry-content-mainpartner{
     text-align: center;
 }.widget.widget_socials h4{
     font-size: 1.2em;
+}
+/* SINGLE BLOG HEADER */
+.single-header {
+    background: transparent url('img/head_finger.gif') no-repeat scroll center center;
+    background-size: cover;
 }

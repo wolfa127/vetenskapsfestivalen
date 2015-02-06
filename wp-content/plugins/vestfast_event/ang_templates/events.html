@@ -20,7 +20,7 @@
     <div class="eventTopPart">
         <h3>FESTIVALDAGAR</h3>
         <p>Välj vilka dagar du vill se i programmet.</p>
-        <a ng-repeat="day in daysListObjects" href=""  class="filter-button-days" ng-click="filterDaysClick()" ng-class="{'selected':day.selected }" ><span class="weekDayName">{{day.weekDayName}}</span><span class="monthDate">{{day.dateText}} {{day.monthName}}</span></a>
+        <a ng-repeat="day in daysListObjects | orderBy:'cleanDayDate':false" href=""  class="filter-button-days" ng-click="filterDaysClick()" ng-class="{'selected':day.selected }" ><span class="weekDayName">{{day.weekDayName}}</span><span class="monthDate">{{day.dateText}} {{day.monthName}}</span></a>
     </div>
     <div class="eventTopPart">
         <h3>PROGRAMKATEGORIER</h3>
@@ -28,48 +28,52 @@
         <a ng-repeat="subject in subjectsListObjects" href="" class="filter-button-subject" ng-click="filterSubjectClick()" ng-class="{'selected':subject.selected }" ><div class="checkIcon"><i class="fa fa-check"></i></div><span class="subject">{{subject.subject}}</span></a>
     </div>
 
-    <div class="eventTopPart">
+    <div class="eventT:opPart">
         <h3>ÖVRIGT</h3>
         <p>Här kan du ställa in mer detaljer om vad du vill se; specifika platser, om du bara vill se familjeaktiviteter eller söka på aktiviteter.</p>
-        <div ng-dropdown-multiselect="" options="venueListObjects" selected-model="venueListDropdownModel" extra-settings="venueListDropdownSettings" translation-texts="venueListDropdownTexts"></div>
+        <div ng-dropdown-multiselect=""events="{
+         onItemSelect: venueSelect,
+         onItemDeselect: venueSelect,
+         onSelectAll: venueSelect,
+         onUnselectAll: venueSelect }" options="venueListObjects" selected-model="venueListDropdownModel" extra-settings="venueListDropdownSettings" translation-texts="venueListDropdownTexts"></div>
         <a href=""  class="filter-button-subject venue family-filter" ng-click="familyFilterClick()" ng-class="{'selected':familyFilter==1 }" ><div class="checkIcon"><i class="fa fa-check"></i></div><i class="fa family"></i><span class="subject familyIcon">FAMILJEAKTIVITET</span></a>
 
         <div class="searchContainer">
             <h6>Sök på aktivitet</h6>
-            <input class="input-text-search" type="text" placeholder="Sök på aktivitet" ng-model="searchText.$">
+            <input class="input-text-search" type="text" placeholder="Sök på aktivitet" ng-model="searchText2" ng-change="textSearchChange()">
         </div>
     </div>
 
-    <ul ng-show="(_eventList).length != 0" class="eventlist" ng-repeat="eventItemPerGroup in _ItemsToFilter = (ItemsToFilter() | filter: filterDaysGroup | filter: searchDays | orderBy:'event_start':false)">
+    <ul class="eventlist" ng-repeat="eventItemPerGroup in _ItemsToFilter = (daysListObjects | orderBy:'event_start':false)" ng-hide="(_eventList).length == 0">
         <div class="eventlist-divider">
             <!--{{_eventList.length}}<p ng-show="(_eventList).length == 0">Nothing here!</p>-->
             <div>
                 <span class="handIcon"></span>{{ eventItemPerGroup.event_dategroup }}
             </div>
         </div>
+        <li ng-repeat="eventItem in _eventList = (eventList | filter:{event_dategroup: eventItemPerGroup.event_dategroup} | filter:searchDays | filter:searchSubjects | filter: searchVenues | filter: searchFamilyFilter | search:searchText2| orderBy:'event_start':false)">
+            <!---<div  ng-repeat="subj in eventItem.subjectList">
+                 --: {{subj}}
+              </div>-->
 
-        <li ng-repeat="eventItem in _eventList = (eventList | filter:{event_dategroup: eventItemPerGroup.event_dategroup} | filter:searchSubjects | filter: searchVenues | filter: searchDays | filter: searchFamilyFilter | search:searchText.$| orderBy:'event_start':false)">
-           <!-- ---<div  ng-repeat="subj in eventItem.subjectList">
-                --: {{subj}}
-             </div>-- -->
-
-                <div class="eventlist-item"><a href="" ui-sref="event({eventId: {{eventItem.eventId}}})" >
-                    <div class="eventlist-item-timebox">
-                        <i class="fa fa-clock-o"></i>
-                        <span>{{eventItem.event_start | dateToTime}}-{{eventItem.event_end | dateToTime}}</span>
-                    </div>
-                   <div class="eventlist-item-content">
-                        <span class="eventItem_title">{{eventItem.title}}</span>
-                        <span ng-show="eventItem.event_type != ''" class="eventItem_event_type">{{eventItem.event_type}}</span>
-                        <span class="" ng-show="eventItem.subjectList.length > 0 && eventItem.event_type != ''">| </span><span class="categories" ng-show="eventItem.subjectList.length > 0" ng-repeat="subjectObject in eventItem.subjectList">{{subjectObject}}{{$last ? '' : ', '}}</span></span>
-
-                    </div>
-                    <div class="eventlist-item-geo">
-                        <i class="fa fa-map-marker"></i>{{eventItem.venue}}
-                    </div>
-                    <div class="eventlist-item-family"><span ng-show="{{eventItem.family_activity}} == 1" class="familyIcon"></span></div>
-                </a>
+            <div class="eventlist-item"><a href="" ui-sref="event({eventId: {{eventItem.eventId}}})" >
+                <div class="eventlist-item-timebox">
+                    <i class="fa fa-clock-o"></i>
+                    <span>{{eventItem.event_start | dateToTime}}-{{eventItem.event_end | dateToTime}}</span>
                 </div>
+                <div class="eventlist-item-content">
+                    <span class="eventItem_title">{{eventItem.title}}</span>
+                    <span ng-show="eventItem.event_type != ''" class="eventItem_event_type">{{eventItem.event_type}}</span>
+                    <span class="" ng-show="eventItem.subjectList.length > 0 && eventItem.event_type != ''">| </span><span class="categories" ng-show="eventItem.subjectList.length > 0" ng-repeat="subjectObject in eventItem.subjectList">{{subjectObject}}{{$last ? '' : ', '}}</span></span>
+
+                </div>
+                <div class="eventlist-item-geo">
+                    <i class="fa fa-map-marker"></i>{{eventItem.venue}}
+                </div>
+                <div class="eventlist-item-family"><span ng-show="{{eventItem.family_activity}} == 1" class="familyIcon"></span></div>
+            </a>
+            </div>
 
         </li>
+
     </ul>

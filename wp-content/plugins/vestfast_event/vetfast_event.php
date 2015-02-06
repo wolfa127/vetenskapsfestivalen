@@ -284,7 +284,7 @@ if (!class_exists('Vetfast_event')) {
                 //wp_register_script('google-maps-api', '//maps.googleapis.com/maps/api/js?v=3.exp');
                 //wp_enqueue_script('google-maps-api');
                 //
-                wp_register_script('angular-google-maps-api',  plugin_dir_url( __FILE__ ) . 'js/angular-google-maps.min.js');
+                wp_register_script('angular-google-maps-api',  plugin_dir_url( __FILE__ ) . 'js/angular-google-maps.min.js?d=2');
                 wp_enqueue_script('angular-google-maps-api');
 
                 wp_register_style('angularjs_loader_style',  plugin_dir_url( __FILE__ ) . 'css/loading-bar.css');

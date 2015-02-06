@@ -1,21 +1,19 @@
 var $jq = jQuery.noConflict();
 var myApp = angular.module('ngAppEvent',['ui.router','angularjs-dropdown-multiselect','angular-loading-bar','angular.filter', 'uiGmapgoogle-maps'])
     .run(
-        ['$rootScope', '$state', '$stateParams','$location',
-            function ($rootScope,   $state,   $stateParams, $location) {
+    ['$rootScope', '$state', '$stateParams','$location',
+        function ($rootScope,   $state,   $stateParams, $location) {
 
-                // It's very handy to add references to $state and $stateParams to the $rootScope
-                // so that you can access them from any scope within your applications.For example,
-                // <li ng-class="{ active: $state.includes('contacts.list') }"> will set the <li>
-                // to active whenever 'contacts.list' or one of its decendents is active.
-                $rootScope.$state = $state;
-                $rootScope.$stateParams = $stateParams;
-
-            }
-        ]
-    )
-    .config(
-    [          '$stateProvider', '$urlRouterProvider',
+            // It's very handy to add references to $state and $stateParams to the $rootScope
+            // so that you can access them from any scope within your applications.For example,
+            // <li ng-class="{ active: $state.includes('contacts.list') }"> will set the <li>
+            // to active whenever 'contacts.list' or one of its decendents is active.
+            $rootScope.$state = $state;
+            $rootScope.$stateParams = $stateParams;
+        }
+    ]
+)
+    .config(['$stateProvider', '$urlRouterProvider',
         function ($stateProvider,   $urlRouterProvider) {
 
             /////////////////////////////
@@ -27,8 +25,8 @@ var myApp = angular.module('ngAppEvent',['ui.router','angularjs-dropdown-multise
 
                 // The `when` method says if the url is ever the 1st param, then redirect to the 2nd param
                 // Here we are just setting up some convenience urls.
-             //   .when('/c?id', '/contacts/:id')
-             //   .when('/user/:id', '/contacts/:id')
+                //   .when('/c?id', '/contacts/:id')
+                //   .when('/user/:id', '/contacts/:id')
 
                 // If the url is ever invalid, e.g. '/asdf', then redirect to '/' aka the home state
                 .otherwise('/');
@@ -40,21 +38,21 @@ var myApp = angular.module('ngAppEvent',['ui.router','angularjs-dropdown-multise
             // Use $stateProvider to configure your states.
             $stateProvider
 
-            //////////
-            // Home //
-            //////////
+                //////////
+                // Home //
+                //////////
 
-            .state("home", {
-                url: "/",
-                templateUrl: pluginUrl + 'ang_templates/events.html',
-                controller: 'VetEventsController'
-            })
+                .state("home", {
+                    url: "/",
+                    templateUrl: pluginUrl + 'ang_templates/events.html',
+                    controller: 'VetEventsController'
+                })
 
-            .state("event", {
-                url: "/event/:eventId",
-                templateUrl: pluginUrl + 'ang_templates/showevent.html',
-                controller: 'VetShowEventController'
-            })
+                .state("event", {
+                    url: "/event/:eventId",
+                    templateUrl: pluginUrl + 'ang_templates/showevent.html',
+                    controller: 'VetShowEventController'
+                })
         }
     ]
 );
@@ -64,8 +62,8 @@ myApp.config(function ($provide) {
     $provide.decorator('$uiViewScroll', function ($delegate) {
         return function (uiViewElement) {
             // var top = uiViewElement.getBoundingClientRect().top;
-             window.scrollTo(0, 0);
-             //window.scrollTo(0, 0);
+            window.scrollTo(0, 0);
+            //window.scrollTo(0, 0);
 
             // Or some other custom behaviour...
         };
@@ -132,6 +130,53 @@ myApp.filter('dateToDateText', function(){
     }
 
 });
+
+
+myApp.service('searchStatesService', function() {
+    var data = {};
+    var selectedDaysData = [];
+    var selectedCategorysData = [];
+    var familyFilterData = 0;
+    var searchStringData = "";
+    var venuesData;
+
+    this.setSelectedCategoreis= function(arr){
+        selectedCategorysData = arr;
+    };
+    this.getSelectedCategoreis= function(){
+        return selectedCategorysData;
+    };
+
+    this.setSelectedDays= function(arr){
+        selectedDaysData = arr;
+    };
+    this.getSelectedDays= function(){
+        return selectedDaysData;
+    };
+
+    this.setFamilyFilter= function(ss){
+        familyFilterData = ss;
+    };
+    this.getFamilyFilter= function(){
+        return familyFilterData;
+    };
+
+    this.setSearchStringFilter= function(searchString){
+        searchStringData = searchString;
+    };
+    this.getSearchStringFilter= function(){
+        return searchStringData;
+    };
+
+    this.setvenueFilter= function(venues){
+        venuesData = venues;
+    };
+
+    this.getvenueFilter= function(){
+        return venuesData;
+    };
+});
+
 
 myApp.factory('eventService', [
     '$http', '$q',
@@ -249,8 +294,7 @@ myApp.factory('eventService', [
     }
 ]);
 
-
-myApp.controller('VetShowEventController', function ($scope,$stateParams, eventService, uiGmapGoogleMapApi) {
+myApp.controller('VetShowEventController', function ($scope,$stateParams, $state , eventService, uiGmapGoogleMapApi) {
 
     $scope.eventData;
     $scope.options = {scrollwheel: false};
@@ -292,7 +336,7 @@ myApp.controller('VetShowEventController', function ($scope,$stateParams, eventS
         eventItem.gmap.map = _map;
         eventItem.gmap.marker = _marker;
     }
-
+        //document.location.toString().toLowerCase()
     $scope.getEventUrl = function () {
         $scope.dynamicUrl = "http://www.facebook.com/plugins/share_button.php?href=" + encodeURIComponent(document.location.href) + "&layout=button_count";
         //$scope.dynamicUrl = encodeURIComponent(document.location.href);
@@ -313,27 +357,27 @@ myApp.controller('VetShowEventController', function ($scope,$stateParams, eventS
                 //console.log(myEvent);
             },
             function () {
-               //console.log('Load error.');
+                //console.log('Load error.');
             });
 
     };
     $scope.getEvent($stateParams.eventId);
 })
 
-myApp.controller('VetEventsController', function ($scope ,$stateParams, eventService) {
+myApp.controller('VetEventsController', function ($scope ,$stateParams, eventService,searchStatesService ) {
     $scope.venueListDropdownTexts = {buttonDefaultText: 'VÄLJ PLATS', checkAll: 'MARKERA ALLA', uncheckAll:'AVMARKERA ALLA',  dynamicButtonTextSuffix:'VALDA PLATSER' };
     $scope.selectedDaysList = [];
     $scope.selectedSubjectsList = [];
     $scope.eventList = [];
-   // $scope.filteredEventList =  $filter('searchDays')($scope.eventList);
+    // $scope.filteredEventList =  $filter('searchDays')($scope.eventList);
     $scope.subjectsList = [];
     $scope.subjectsListObjects = new Array();
     $scope.daysListObjects = new Array();
     $scope.venueListObjects = new Array();
     $scope.familyFilter = 0;
-    $scope.familyFilterAlways = 1;
     $scope.venueListDropdownModel = [];
     $scope.indexedGroups = [];
+    $scope.searchText2 = "";
 
     $scope.venueListDropdownSettings = {
         scrollableHeight: '300px',
@@ -344,6 +388,28 @@ myApp.controller('VetEventsController', function ($scope ,$stateParams, eventSer
         externalIdProp: ''
     };
     $jq('.eventContent').show();
+
+
+
+    function init(){
+       $scope.selectedDaysList = searchStatesService.getSelectedDays();
+        for (var i = 0; i < $scope.daysListObjects.length; i++) {
+            if(($scope.selectedDaysList.indexOf($scope.daysListObjects[i].cleanDayDate) >= 0) && ($scope.selectedDaysList.length > 0)){
+                $scope.daysListObjects[i].selected = true;
+            }
+        }
+       $scope.selectedSubjectsList = searchStatesService.getSelectedCategoreis();
+        for (var i = 0; i < $scope.subjectsListObjects.length; i++) {
+            //console.log($scope.subjectsListObjects);
+            if(($scope.selectedSubjectsList.indexOf($scope.subjectsListObjects[i].subject) >= 0) && ($scope.selectedSubjectsList.length > 0)){
+                $scope.subjectsListObjects[i].selected = true;
+            }
+        }
+        $scope.familyFilter = searchStatesService.getFamilyFilter();
+        $scope.searchText2 = searchStatesService.getSearchStringFilter();
+        if(searchStatesService.getvenueFilter() != undefined)
+            $scope.venueListDropdownModel = searchStatesService.getvenueFilter();
+    };
 
     $scope.search = function (item){
         if (item.subjectList.indexOf($scope.query) != -1) {
@@ -358,7 +424,7 @@ myApp.controller('VetEventsController', function ($scope ,$stateParams, eventSer
         }
         var res = item.event_start.split(" ");
         if (($scope.selectedDaysList.indexOf(res[0]) != -1) ) {
-          return true;
+            return true;
         }
         return false;
     }
@@ -375,8 +441,11 @@ myApp.controller('VetEventsController', function ($scope ,$stateParams, eventSer
         return false;
     }
 
+
+
     $scope.searchVenues = function (item){
         var venues = Array();
+        //console.log($scope.venueListDropdownModel);
         for (var i = 0; i < $scope.venueListDropdownModel.length; i++) {
             venues.push($scope.venueListDropdownModel[i].label);
         }
@@ -409,9 +478,19 @@ myApp.controller('VetEventsController', function ($scope ,$stateParams, eventSer
     $scope.familyFilterClick = function (){
         if( $scope.familyFilter == 1 ){
             $scope.familyFilter = 0;
+            searchStatesService.setFamilyFilter(0);
         }else{
-            $scope.familyFilter = 1;
+            $scope.familyFilter = 1
+            searchStatesService.setFamilyFilter(1);
         }
+    }
+
+    $scope.textSearchChange = function (){
+        searchStatesService.setSearchStringFilter($scope.searchText2);
+    }
+
+    $scope.venueSelect = function(){
+        searchStatesService.setvenueFilter($scope.venueListDropdownModel);
     }
 
     $scope.filterSubjectClick = function (){
@@ -421,17 +500,16 @@ myApp.controller('VetEventsController', function ($scope ,$stateParams, eventSer
 
         if($scope.selectedSubjectsList.indexOf(selectedSubject) == -1 ){
             $scope.selectedSubjectsList.push(selectedSubject);
-
         }
         else{
             var pos =  $scope.selectedSubjectsList.indexOf(selectedSubject);
             $scope.selectedSubjectsList.splice(pos, 1);
-
         }
+        searchStatesService.setSelectedCategoreis($scope.selectedSubjectsList)
         //console.log($scope.selectedSubjectsList);
     }
 
-    $scope.filterDaysClick = function (){
+    $scope.filterDaysClick =  function (){
         if($scope.selectedDaysList.indexOf(this.day.cleanDayDate) == -1 ){
             $scope.selectedDaysList.push(this.day.cleanDayDate);
             this.day.selected = true;
@@ -441,11 +519,11 @@ myApp.controller('VetEventsController', function ($scope ,$stateParams, eventSer
             $scope.selectedDaysList.splice(pos, 1);
             this.day.selected = false;
         }
-        //console.log($scope.selectedDaysList);
+        searchStatesService.setSelectedDays($scope.selectedDaysList);
     }
 
     $scope.searchFamilyFilter = function (item){
-        if($scope.familyFilter == 0){
+        if(searchStatesService.getFamilyFilter() == 0){
             return true;
         }
         else{
@@ -456,69 +534,56 @@ myApp.controller('VetEventsController', function ($scope ,$stateParams, eventSer
         return false;
     }
 
-    $scope.ItemsToFilter = function() {
-        $scope.indexedGroups = [];
-        return $scope.eventList;
-    }
-
-    $scope.filterDaysGroup = function(eventItem) {
+   /* $scope.filterDaysGroup = function(eventItem) {
         var groupIsNew = $scope.indexedGroups.indexOf(eventItem.event_dategroup) == -1;
         if (groupIsNew) {
             $scope.indexedGroups.push(eventItem.event_dategroup);
             //console.log($scope.indexedGroups);
         }
         return groupIsNew;
-    }
-
+    }*/
 
     $scope.getEvents = function () {
+        //console.log("loading Events");
         eventService.getEvents()
             .then(function (myEvents) {
                 $scope.eventList = myEvents;
-                //console.log( $scope.eventList);
+             //   console.log("Events Loaded");
                 renderDateGroupName();
                 renderDateButtons()
                 renderSubjects();
                 renderVenues();
-               //console.log(eventService.eventsList);
+                 init();
+              //  console.log(eventService.eventsList);
             },
             function () {
                 //console.log('albums retrieval failed.');
             });
 
     };
-    $scope.getSubjetcs = function(){
-        eventService.getSubjects()
-            .then(function (mySubjects) {
-                for (var i = 0; i < mySubjects.length; i++) {
-                    //myEvents[i].title += " (promise)";
-                    //console.log( mySubjects[i].subject);
-                }
-                //$scope.eventList = myEvents;
-            },
-            function () {
-            });
-    }
 
     function renderDateGroupName(){
         var weekDays = ["Söndag","Måndag", "Tisdag", "Onsdag", "Torsdag", "Fredag", "Lördag"];
         var monthName = ["Januari", "Februari", "Mars", "April", "Maj", "Juni", "Juli", "Augusti", "September", "Oktober", "November", "December"];
-
         var days = new Array();
-        var daysObjects = new Array();
-
         for (var i = 0; i < $scope.eventList.length; i++) {
             var tempDate = $scope.eventList[i]["event_start"].split(" ")[0];
-                var dObj =  new Object();
-                var d = new Date($scope.eventList[i]["event_start"].split(" ")[0]);
-                dObj.cleanDayDate = $scope.eventList[i]["event_start"].split(" ")[0];
-                dObj.weekDayName = weekDays[d.getDay()];
-                dObj.monthName = monthName[d.getMonth()];
-                dObj.dateText = d.getDate();
-                //Add text
-                $scope.eventList[i]["event_dategroup"] = dObj.weekDayName + " " +  dObj.dateText + " " + dObj.monthName;
+            var dObj =  new Object();
+            var d = new Date($scope.eventList[i]["event_start"].split(" ")[0]);
+            dObj.cleanDayDate = $scope.eventList[i]["event_start"].split(" ")[0];
+            dObj.weekDayName = weekDays[d.getDay()];
+            dObj.monthName = monthName[d.getMonth()];
+            dObj.dateText = d.getDate();
+            //Add text
+            $scope.eventList[i]["event_dategroup"] = dObj.weekDayName + " " +  dObj.dateText + " " + dObj.monthName;
+           // console.log( dObj);
+            var groupIsNew = $scope.indexedGroups.indexOf($scope.eventList[i]["event_dategroup"]) == -1;
+            if (groupIsNew) {
+                //console.log("Adding: " + $scope.eventList[i]);
+                $scope.indexedGroups.push($scope.eventList[i]);
+                //console.log($scope.indexedGroups);
+            }
         }
-        $scope.daysListObjects = daysObjects;
     }
 
     function renderDateButtons(){
@@ -541,7 +606,9 @@ myApp.controller('VetEventsController', function ($scope ,$stateParams, eventSer
                 dObj.monthName = monthName[d.getMonth()];
                 dObj.dateText = d.getDate();
                 dObj.selected = false;
+                dObj.event_dategroup = dObj.weekDayName + " " +  dObj.dateText + " " + dObj.monthName;
                 daysObjects.push(dObj);
+
                 days.push($scope.eventList[i]["event_start"].split(" ")[0]);
             }
         }
@@ -599,7 +666,6 @@ myApp.controller('VetEventsController', function ($scope ,$stateParams, eventSer
     }
 
     $scope.getEvents();
-    //$scope.getSubjetcs();
 })
 
 

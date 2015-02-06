@@ -37,11 +37,11 @@ wp_enqueue_script('comment-reply');
 
 		<div class="l-main">
 			<div class="l-submain  _pagehead size_large">
-			<div class="l-submain-img" style="background-image: url(http://vetenskapsfestivalen.stendahls.se/wp-content/uploads/2014/12/head_finger1.gif);"></div>        <div class="l-submain-h g-html i-cf">
+			<div class="l-submain-img single-header"></div>        <div class="l-submain-h g-html i-cf">
 				<div class="w-pagehead">
 
 										<h1></h1>
-						<h1>VETENSKAPSFESTIVALEN</h1><h2>13-24 APRIL 2015. ÅRETS TEMA: LIV OCH DÖD</h2>                                            <!-- breadcrums -->
+						<h1>VETENSKAPSFESTIVALEN</h1>                                            <!-- breadcrums -->
 
 				</div>
 			</div>
