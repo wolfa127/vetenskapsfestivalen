@@ -18,7 +18,7 @@
     </div>
 
     <div class="eventTopPart">
-        <h3>FESTIVALDAGAR</h3>
+        <h3 id="searchstart">FESTIVALDAGAR</h3>
         <p>Välj vilka dagar du vill se i programmet.</p>
         <a ng-repeat="day in daysListObjects | orderBy:'cleanDayDate':false" href=""  class="filter-button-days" ng-click="filterDaysClick()" ng-class="{'selected':day.selected }" ><span class="weekDayName">{{day.weekDayName}}</span><span class="monthDate">{{day.dateText}} {{day.monthName}}</span></a>
     </div>
@@ -44,7 +44,7 @@
         </div>
     </div>
 
-    <ul class="eventlist" ng-repeat="eventItemPerGroup in _ItemsToFilter = (daysListObjects | orderBy:'event_start':false)" ng-hide="(_eventList).length == 0">
+    <ul class="eventlist" ng-repeat="eventItemPerGroup in _ItemsToFilter = (daysListObjects | orderBy:'cleanDayDate':false)" ng-hide="(_eventList).length == 0">
         <div class="eventlist-divider">
             <!--{{_eventList.length}}<p ng-show="(_eventList).length == 0">Nothing here!</p>-->
             <div>

@@ -38,10 +38,6 @@ var myApp = angular.module('ngAppEvent',['ui.router','angularjs-dropdown-multise
             // Use $stateProvider to configure your states.
             $stateProvider
 
-                //////////
-                // Home //
-                //////////
-
                 .state("home", {
                     url: "/",
                     templateUrl: pluginUrl + 'ang_templates/events.html',
@@ -62,19 +58,14 @@ myApp.config(function ($provide) {
     $provide.decorator('$uiViewScroll', function ($delegate) {
         return function (uiViewElement) {
             // var top = uiViewElement.getBoundingClientRect().top;
-            window.scrollTo(0, 0);
+            //window.scrollTo(200, 0);
+            var scrollToElement = document.getElementById("searchstart");
+            console.log(scrollToElement);
             //window.scrollTo(0, 0);
 
             // Or some other custom behaviour...
+         //  scrollToElement.scrollIntoView();
         };
-    });
-});
-
-myApp.config(function(uiGmapGoogleMapApiProvider) {
-    uiGmapGoogleMapApiProvider.configure({
-        //    key: 'your api key',
-        v: '3.18',
-        libraries: 'weather,geometry,visualization'
     });
 });
 

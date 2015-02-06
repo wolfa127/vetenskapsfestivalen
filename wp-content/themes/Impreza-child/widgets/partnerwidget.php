@@ -19,17 +19,18 @@ class Partners_Widget extends WP_Widget {
                 $loop = new WP_Query( $args );
                 while ( $loop->have_posts() ) : $loop->the_post();
                     the_content();
-                    echo types_render_field( "partnerimageslug", array( "title" => "title", "width" => "240", "height" => "180", "proportional" => "true", "class" => "entry-content-mainpartner") );
-                    //echo types_render_field( "partnerimageslug", array("url"=>"false", "size"=>"thumbnail", "class" => "entry-content-mainpartner") );
+                   // echo types_render_field( "partnerimageslug", array( "title" => "title", "width" => "240", "height" => "180", "proportional" => "true", "class" => "entry-content-mainpartner") );
+                    echo types_render_field( "partnerimageslug", array("url"=>"false", "size"=>"thumbnail", "class" => "entry-content-mainpartner") );
                 endwhile;
                 ?>
             </div>
 
             <div class="partners-secondary">
-                <span class="partnerheader">HEJ PARTNERS</span>
+                <span class="partnerheader">PARTNERS</span>
                 <?php
-                $args = array( 'post_type' => 'partners', 'posts_per_page' => 1000 );
+                $args = array( 'post_type' => 'partners', 'posts_per_page' => 300);
                 $loop = new WP_Query( $args );
+
                 $postCount = 0;
                 while ( $loop->have_posts() ) : $loop->the_post();
                     the_content();

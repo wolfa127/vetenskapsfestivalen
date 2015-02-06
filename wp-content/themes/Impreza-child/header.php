@@ -293,7 +293,7 @@ $lang_class = (defined('ICL_LANGUAGE_CODE') AND ICL_LANGUAGE_CODE != '')?' wpml_
 		} ?>>
 			<div class="l-subheader-h i-widgets i-cf">
                 <div class="ew-logo ">
-                    <a class="ew-logo-link" href="http://localhost:8888/vetenskapsfestivalen/">
+                    <a class="ew-logo-link" href="/">
                                                     <span class="ew-logo-img" style="height: 90px;">
                                                                <?php if ( ! empty($smof_data['custom_logo'])): ?>
                                                                    <img class="for_default" src="<?php echo $smof_data['custom_logo']; ?>" alt="<?php bloginfo('name'); ?>" style="margin-bottom: -<?php echo (empty($smof_data['logo_height']))?30:$smof_data['logo_height'];?>px;">
