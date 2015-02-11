@@ -20,7 +20,7 @@ class Partners_Widget extends WP_Widget {
                 while ( $loop->have_posts() ) : $loop->the_post();
                     the_content();
                    // echo types_render_field( "partnerimageslug", array( "title" => "title", "width" => "240", "height" => "180", "proportional" => "true", "class" => "entry-content-mainpartner") );
-                    echo types_render_field( "partnerimageslug", array("url"=>"false", "size"=>"thumbnail", "class" => "entry-content-mainpartner") );
+                    echo types_render_field( "partnerimageslug", array("url"=>"false", "size"=>"vetenskap_logosize", "class" => "entry-content-mainpartner") );
                 endwhile;
                 ?>
             </div>

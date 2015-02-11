@@ -2,57 +2,66 @@
 <div id="fb-root"></div>
 <script>
     (function(d, s, id) {
-    var js, fjs = d.getElementsByTagName(s)[0];
-    if (d.getElementById(id)) return;
-    js = d.createElement(s); js.id = id;
-    js.src = "//connect.facebook.net/sv_SE/sdk.js#xfbml=1&version=v2.0";
-    fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/sv_SE/sdk.js#xfbml=1&version=v2.0";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
 
-    <div class="eventPartContainer">
-        <div class="imagepart" ng-hide="eventData.image_url == ''">
-            <img ng-hide="eventData.image_url == ''" ng-src="{{eventData.image_url}}"/>
+<div class="eventPartContainer" ng-init="scrollToTop()">
+    <div class="imagepart" ng-hide="eventData.image_url == ''">
+        <img ng-hide="eventData.image_url == ''" ng-src="{{eventData.image_url}}"/>
+    </div>
+    <div class="eventHeader">
+        <div class="handicon">
+
         </div>
-        <div class="eventHeader">
-            <div class="handicon">
-
+        <div class="title">
+            <h2>{{eventData.event_start | dateToDateText}} </h2>
+            <div class="eventlist-item-timebox2">
+                <i class="fa fa-clock-o"></i>
+                <span>{{eventData.event_start | dateToTime}}-{{eventData.event_end | dateToTime}}</span>
             </div>
-            <div class="title">
-                <h2>{{eventData.event_start | dateToDateText}} </h2>
-                <div class="eventlist-item-timebox2">
-                    <i class="fa fa-clock-o"></i>
-                    <span>{{eventData.event_start | dateToTime}}-{{eventData.event_end | dateToTime}}</span>
-                </div>
-                <br>
-                <span>{{eventData.venue}}</span>
+            <br>
+            <span>{{eventData.venue}}</span>
+        </div>
+        <div class="familyicon" ng-show="eventData.family_activity == 1">  </div>
+    </div>
+    <div>
+        <h1>{{eventData.title}} </h1>
+        <h3 class="orange">{{eventData.event_type}} </h3>
+        <p>{{eventData.description}}</p>
+        <div class="overhead" ng-show="(eventData.overhead_title.length > 0) || (eventData.overhead_description.length > 0)">
+            <div>
+                <span class="overhead-title">INGÅR I SERIEN</span>
+                <p ng-show="eventData.overhead_title.length" class="overhead-title-title">{{eventData.overhead_title}}</p>
+                <p ng-show="eventData.overhead_description.length">{{eventData.overhead_description}}</p>
             </div>
-            <div class="familyicon" ng-show="eventData.family_activity == 1">  </div>
         </div>
-        <div>
-            <h1>{{eventData.title}} </h1>
-            <h3 class="orange">{{eventData.event_type}} </h3>
-            <p>{{eventData.description}}</p>
-            <p ng-show="eventData.crew.length"><span class="crew bold">Medverkande: </span>{{eventData.crew}}</p>
-            <p  ng-show="eventData.venue_adress.length"><span class="crew bold">Adress: </span>{{eventData.venue_adress}}</p>
-            <p ng-show="eventData.links.length > 0"><span class="links bold">Relaterade Länkar: </span><span ng-repeat="link in eventData.links"><a href="{{link.url}}">{{link.title}}</a>{{$last ? '' : ', '}}</span></p>
-            <p ng-show="eventData.subjectList.length > 0"><span class="crew bold">Programkategorier: </span><span ng-repeat="subjectObject in eventData.subjectList">{{subjectObject.subject}}{{$last ? '' : ', '}}</span></p>
-            <div class="sharewidgets">
-                {{getEventUrl}}
-                <div id="facebookShare" class="fb-share-button" data-href="{{getEventUrl}}" data-layout="button"></div>
-                <a href="https://twitter.com/share" class="twitter-share-button" data-count="none">Tweet</a>
-                <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-            </div>
-            <p ng-show="eventData.closest_public_transport.length > 0"><span class="crew bold">Närmasta hållplats: </span>{{eventData.closest_public_transport}}</p>
+        <p ng-show="eventData.crew.length"><span class="crew bold">Medverkande: </span>{{eventData.crew}}</p>
+        <p  ng-show="eventData.venue_adress.length"><span class="crew bold">Adress: </span>{{eventData.venue_adress}}</p>
+        <p ng-show="eventData.links.length > 0"><span class="links bold">Relaterade Länkar: </span><span ng-repeat="link in eventData.links"><a href="{{link.url}}">{{link.title}}</a>{{$last ? '' : ', '}}</span></p>
+        <p ng-show="eventData.accessibilityList.length > 0"><span class="links bold">Tillgänglighet: </span><span ng-repeat="accessibility in eventData.accessibilityList">{{accessibility.accessibility}}{{$last ? '' : ', '}}</span></p>
+        <p ng-show="eventData.subjectList.length > 0"><span class="crew bold">Programkategorier: </span><span ng-repeat="subjectObject in eventData.subjectList">{{subjectObject.subject}}{{$last ? '' : ', '}}</span></p>
+        <p ng-show="eventData.closest_public_transport.length > 0"><span class="crew bold">Närmaste hållplats: </span>{{eventData.closest_public_transport}}</p>
+        <p ng-show="eventData.closest_public_transport.length > 0"><span class="crew bold">Närmaste hållplats: </span>{{eventData.closest_public_transport}}</p>
+        <div class="sharewidgets">
+            <div id="facebookShare" class="fb-share-button" data-href="{{getEventUrl}}" data-layout="button"></div>
+            <a href="https://twitter.com/share" class="twitter-share-button" data-count="none">Tweet</a>
+            <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
         </div>
-
-        <div id="map_canvas" ng-show="eventData.gmap.map != undefined" class="">
-            <ui-gmap-google-map center="eventData.gmap.map.center" zoom="eventData.gmap.map.zoom" draggable="true" options="options">
-                <ui-gmap-marker coords="eventData.gmap.marker.coords" options="eventData.gmap.marker.options" events="eventData.gmap.marker.events" idkey="eventData.gmap.marker.id">
-                </ui-gmap-marker>
-            </ui-gmap-google-map>
-        </div>
-
-        <a href="" ui-sref="home" class="filter-button-subject venue back" ><i class="fa fa-chevron-left"></i><span class="subject">TILLBAKA</span></a>
 
     </div>
+
+    <div id="map_canvas" ng-show="eventData.gmap.map != undefined" class="">
+        <ui-gmap-google-map center="eventData.gmap.map.center" zoom="eventData.gmap.map.zoom" draggable="true" options="options">
+            <ui-gmap-marker coords="eventData.gmap.marker.coords" options="eventData.gmap.marker.options" events="eventData.gmap.marker.events" idkey="eventData.gmap.marker.id">
+            </ui-gmap-marker>
+        </ui-gmap-google-map>
+    </div>
+
+    <a href="" ui-sref="home" class="filter-button-subject venue back" ><i class="fa fa-chevron-left"></i><span class="subject">TILLBAKA</span></a>
+
+</div>
 

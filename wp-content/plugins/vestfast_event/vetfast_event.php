@@ -38,7 +38,16 @@ if (!class_exists('Vetfast_event')) {
 
             add_action( 'wp_head', array( $this, 'add_ajax_library' ) );
             add_action( 'wp_head', array( $this, 'add_angular_for_template' ) );
+
+
+            add_action( 'wp_loaded', array( $this,'taco_kitten_rewrite') );
         } // END public function __construc
+
+
+        function taco_kitten_rewrite() {
+            $url = str_replace( trailingslashit( site_url() ), '', plugins_url( '/taco-kittens.php', __FILE__ ) );
+            add_rewrite_rule( 'taco-kittens\\.php$', $url, 'top' );
+        }
 
         /**
          * Activate the plugin
@@ -50,27 +59,26 @@ if (!class_exists('Vetfast_event')) {
 
             global $wpdb;
             global $jal_db_version;
-            $sql2 = "DROP TABLE wp_vetfastevent";
-            $sql_event = "CREATE TABLE wp_vetfastevent (
+            $sql_event = "CREATE TABLE IF NOT EXISTS wp_vetfastevent (
                 id MEDIUMINT NOT NULL AUTO_INCREMENT,
                 eventId INT NULL,
                 created DATETIME NULL,
                 updated DATETIME NULL,
                 title VARCHAR(2000) NULL,
                 overhead_title VARCHAR(2000) NULL,
-                overhead_description BLOB NULL,
+                overhead_description VARCHAR(2000) NULL,
                 event_start DATETIME NULL,
                 event_end DATETIME NULL,
                 event_language VARCHAR(45) NULL,
                 venue VARCHAR(300) NULL,
                 venue_number INT NULL,
-                venue_adress VARCHAR(2000) NULL,
+                venue_adress VARCHAR(1000) NULL,
                 event_type VARCHAR(245) NULL,
                 theme VARCHAR(500) NULL,
                 crew VARCHAR(2000) NULL,
                 image_url VARCHAR(2000) NULL,
-                closest_public_transport VARCHAR(3000) NULL,
-                description VARCHAR(6000) NULL,
+                closest_public_transport VARCHAR(1000) NULL,
+                description VARCHAR(2000) NULL,
                 geo_position VARCHAR (40) NULL,
                 highlight TINYINT(1) NULL,
                 family_activity TINYINT(1) NOT NULL,
@@ -79,8 +87,8 @@ if (!class_exists('Vetfast_event')) {
             require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
             dbDelta($sql_event);
 
-            $sql3 = "DROP TABLE wp_vetfastevent_links";
-            $sql_eventlinks = "CREATE TABLE wp_vetfastevent_links (
+
+            $sql_eventlinks = "CREATE TABLE IF NOT EXISTS wp_vetfastevent_links (
                 id MEDIUMINT NOT NULL AUTO_INCREMENT,
                 eventId INT NOT NULL,
                 url VARCHAR(2000) NULL,
@@ -88,25 +96,25 @@ if (!class_exists('Vetfast_event')) {
                 PRIMARY KEY  (id));";
             dbDelta($sql_eventlinks);
 
-            $sql_eventsubjectTags = "CREATE TABLE wp_vetfastevent_subjectTags (
+            $sql_eventsubjectTags = "CREATE TABLE IF NOT EXISTS wp_vetfastevent_subjectTags (
                 id MEDIUMINT NOT NULL AUTO_INCREMENT,
                 subject VARCHAR(2000) NULL,
                 PRIMARY KEY  (id));";
             dbDelta($sql_eventsubjectTags);
 
-            $sql_eventsubjectlist = "CREATE TABLE wp_vetfastevent_subjectlist (
+            $sql_eventsubjectlist = "CREATE TABLE IF NOT EXISTS wp_vetfastevent_subjectlist (
                 eventId MEDIUMINT NOT NULL,
                 subjectId MEDIUMINT NOT NULL,
                 PRIMARY KEY  (eventId, subjectId));";
             dbDelta($sql_eventsubjectlist);
 
-            $sql_accessibilityTags = "CREATE TABLE wp_vetfastevent_accessibilityTags (
+            $sql_accessibilityTags = "CREATE TABLE IF NOT EXISTS wp_vetfastevent_accessibilityTags (
                 id MEDIUMINT NOT NULL AUTO_INCREMENT,
                 accessibility VARCHAR(2000) NULL,
                 PRIMARY KEY  (id));";
             dbDelta($sql_accessibilityTags);
 
-            $sql_eventaccessibilityList = "CREATE TABLE wp_vetfastevent_accessibilitylist (
+            $sql_eventaccessibilityList = "CREATE TABLE IF NOT EXISTS wp_vetfastevent_accessibilitylist (
                 eventId MEDIUMINT NOT NULL,
                 accessibilityId MEDIUMINT NOT NULL,
                 PRIMARY KEY  (eventId, accessibilityId));";
@@ -208,6 +216,7 @@ if (!class_exists('Vetfast_event')) {
             $results2 =  $wpdb->get_results( $wpdb->prepare($getIDs,$searchId) , 'ARRAY_A' );
             $resultObj = array();
             $resultListObj = array();
+            $resultAccessibilityObj = array();
             foreach ( $results2 as $key => $resultEvent )
             {
                 $resultObj[] = array("title" => $results2[$key]['title'], "url" => $results2[$key]['url']);
@@ -215,13 +224,24 @@ if (!class_exists('Vetfast_event')) {
 
             $getEventSubjects = "SELECT wp_vetfastevent.eventId, wp_vetfastevent_subjectTags.subject, wp_vetfastevent_subjectlist.subjectId FROM wp_vetfastevent, wp_vetfastevent_subjectlist, wp_vetfastevent_subjectTags where wp_vetfastevent.eventId = wp_vetfastevent_subjectlist.eventId and wp_vetfastevent_subjectlist.subjectId = wp_vetfastevent_subjectTags.id AND wp_vetfastevent.eventId = %d";
             $getEventSubjectsResult =  $wpdb->get_results( $wpdb->prepare( $getEventSubjects, $searchId), 'ARRAY_A' );
+
             foreach ( $getEventSubjectsResult as $key => $resultEventSubject )
             {
                 $resultListObj[] = array("subjectId" => $resultEventSubject['subjectId'], "subject" => $resultEventSubject['subject']);
             }
 
+            //$getEventAccessibility = "SELECT wp_vetfastevent_accessibilityTags.accessibility FROM wp_vetfastevent_accessibilityTags, wp_vetfastevent_accessibilitylist where wp_vetfastevent_accessibilityTags.eventId = wp_vetfastevent_subjectlist.eventId and wp_vetfastevent_subjectlist.subjectId = wp_vetfastevent_subjectTags.id AND wp_vetfastevent.eventId = %d";
+            $getEventAccessibility = "SELECT * FROM wp_vetfastevent_accessibilityTags, wp_vetfastevent_accessibilitylist WHERE wp_vetfastevent_accessibilityTags.id = wp_vetfastevent_accessibilitylist.accessibilityId AND wp_vetfastevent_accessibilitylist.eventid = %d";
+            $getEventAccessibilityResult =  $wpdb->get_results( $wpdb->prepare( $getEventAccessibility, $searchId), 'ARRAY_A' );
+
+            foreach ( $getEventAccessibilityResult as $key => $resultEventAccessibility )
+            {
+                $resultAccessibilityObj[] = array("accessibilityId" => $resultEventAccessibility['accessibilityId'], "accessibility" => $resultEventAccessibility['accessibility']);
+            }
+
             $sq_results[0]['links'] = $resultObj;
             $sq_results[0]['subjectList'] = $resultListObj;
+            $sq_results[0]['accessibilityList'] = $resultAccessibilityObj;
             header( "Content-Type: application/json" );
 
 

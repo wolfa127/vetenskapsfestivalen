@@ -400,7 +400,55 @@ function us_register_meta_boxes2()
         }
     }
 }
+
+add_image_size( 'vetenskap_logosize', 150, 150, false);
+add_image_size( 'vetenskap_large', 1200, 1200, false);
+add_image_size( 'vetenskap_medium', 800, 1024, false);
+add_image_size( 'vetenskap_front_thumbnail', 600, 400, true);
+
+add_action( 'vc_after_init', 'add_optimized_image_size' ); /* Note: here we are using vc_after_init because WPBMap::GetParam and mutateParame are available only when default content elements are "mapped" into the system */
+
+function add_optimized_image_size() {
+    $param = WPBMap::getParam( 'vc_single_image', 'img_size' );
+    //Append new value to the 'value' array
+    $param['value'][__("Vetenskap large", "js_composer")] = 'vetenskap_large';
+    $param['value'][__("Vetenskap medium", "js_composer")] = 'vetenskap_medium';
+    $param['value'][__("Vetenskap front thumbnail", "js_composer")] = 'vetenskap_front_thumbnail';
+    //Finally "mutate" param with new values
+    vc_update_shortcode_param( 'vc_single_image', $param );
+}
+
+function ms_image_editor_default_to_gd( $editors ) {
+    $gd_editor = 'WP_Image_Editor_GD';
+
+    $editors = array_diff( $editors, array( $gd_editor ) );
+    array_unshift( $editors, $gd_editor );
+
+    return $editors;
+}
+add_filter( 'wp_image_editors', 'ms_image_editor_default_to_gd' );
+
 // Hook to 'admin_init' to make sure the meta box class is loaded before
 // (in case using the meta box class in another plugin)
-// This is also helpful for some conditionals like checking page template, categories, etc.
+// This is also helpfull
+
+
 add_action( 'admin_init', 'us_register_meta_boxes2' );
+
+add_action('wp_footer', 'add_googleanalytics');
+
+function add_googleanalytics() { ?>
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-23149368-1', 'auto');
+        ga('send', 'pageview');
+
+    </script>
+<?php }
+
+
+

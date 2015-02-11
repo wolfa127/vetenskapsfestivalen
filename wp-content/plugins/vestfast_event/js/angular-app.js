@@ -57,11 +57,12 @@ var myApp = angular.module('ngAppEvent',['ui.router','angularjs-dropdown-multise
 myApp.config(function ($provide) {
     $provide.decorator('$uiViewScroll', function ($delegate) {
         return function (uiViewElement) {
-            // var top = uiViewElement.getBoundingClientRect().top;
-            //window.scrollTo(200, 0);
+           // var top = uiViewElement.getBoundingClientRect().top;
+          //  window.scrollTo(0, 0);
             //var scrollToElement = document.getElementById("searchstart");
             //console.log(scrollToElement);
             //window.scrollTo(0, 0);
+            //alert('sdf');
 
             // Or some other custom behaviour...
          //  scrollToElement.scrollIntoView();
@@ -331,6 +332,10 @@ myApp.controller('VetShowEventController', function ($scope,$stateParams, $state
     $scope.getEventUrl = function () {
         $scope.dynamicUrl = "http://www.facebook.com/plugins/share_button.php?href=" + encodeURIComponent(document.location.href) + "&layout=button_count";
         //$scope.dynamicUrl = encodeURIComponent(document.location.href);
+    }
+
+    $scope.scrollToTop  = function () {
+        window.scrollTo(0, 0);
     }
 
     $scope.getEvent = function (id) {

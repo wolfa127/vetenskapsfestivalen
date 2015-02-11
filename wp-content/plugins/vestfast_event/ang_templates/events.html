@@ -61,16 +61,18 @@
                     <i class="fa fa-clock-o"></i>
                     <span>{{eventItem.event_start | dateToTime}}-{{eventItem.event_end | dateToTime}}</span>
                 </div>
-                <div class="eventlist-item-content">
-                    <span class="eventItem_title">{{eventItem.title}}</span>
-                    <span ng-show="eventItem.event_type != ''" class="eventItem_event_type">{{eventItem.event_type}}</span>
-                    <span class="" ng-show="eventItem.subjectList.length > 0 && eventItem.event_type != ''">| </span><span class="categories" ng-show="eventItem.subjectList.length > 0" ng-repeat="subjectObject in eventItem.subjectList">{{subjectObject}}{{$last ? '' : ', '}}</span></span>
+                <div class="eventlist-item-container">
+                    <div class="eventlist-item-content">
+                        <span class="eventItem_title">{{eventItem.title}}</span>
+                        <span ng-show="eventItem.event_type != ''" class="eventItem_event_type">{{eventItem.event_type}}</span>
+                        <span class="" ng-show="eventItem.subjectList.length > 0 && eventItem.event_type != ''">| </span><span class="categories" ng-show="eventItem.subjectList.length > 0" ng-repeat="subjectObject in eventItem.subjectList">{{subjectObject}}{{$last ? '' : ', '}}</span></span>
 
+                    </div>
+                    <div class="eventlist-item-geo"  ng-show="eventItem.venue.length > 0">
+                        <i class="fa fa-map-marker"></i>{{eventItem.venue}}
+                    </div>
+                    <div class="eventlist-item-family"><span ng-show="{{eventItem.family_activity}} == 1" class="familyIcon"></span></div>
                 </div>
-                <div class="eventlist-item-geo"  ng-show="eventItem.venue.length > 0">
-                    <i class="fa fa-map-marker"></i>{{eventItem.venue}}
-                </div>
-                <div class="eventlist-item-family"><span ng-show="{{eventItem.family_activity}} == 1" class="familyIcon"></span></div>
             </a>
             </div>
 

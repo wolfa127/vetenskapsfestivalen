@@ -19,7 +19,7 @@ get_header(); ?>
         <div class="l-submain-h g-html i-cf">
             <div class="g-cols offset_default">
                 <div class="full-width">
-                    <div ng-app="ngAppEvent" ><div ui-view autoscroll="false" ></div>
+                    <div ng-app="ngAppEvent" ><div ui-view autoscroll="true" ></div>
 
 
                     </div>

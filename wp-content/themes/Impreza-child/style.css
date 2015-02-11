@@ -146,6 +146,7 @@ body.title_program .w-nav .w-nav-item:first-child .w-nav-anchor.level_1 .w-nav-t
 
 .w-pagehead{
     text-align: left;
+    max-width: 920px;
 }
 .w-pagehead h1{
     color: #FFFFFF;
@@ -647,7 +648,11 @@ ul.eventlist > li{
     overflow: hidden;
     width: 100%;
 }
-
+.eventlist-item-container{
+    display: table;
+    overflow: hidden;
+    width: 100%;
+}
 .eventlist-item a {
     overflow: hidden;
     display: table-row;
@@ -1067,6 +1072,14 @@ ul.eventlist > li{
         overflow: hidden;
         width: 100%;
     }
+    
+    .eventlist-item-container{
+        overflow: hidden;
+        border: 1px solid #F0F0F0;
+        padding: 0px;
+        margin: 0px;
+        box-sizing: border-box;
+    }
     .eventlist-item a{
         display: block;
         position: relative;
@@ -1097,20 +1110,19 @@ ul.eventlist > li{
         width: 100%;
         text-align: left;
         vertical-align: top;
-        border: 0px solid #e3e3e3;
-        border-left: none;
         clear: initial;
         float: left;
+        border-bottom: none;
+        border: none;
     }
 
     .eventlist-item-geo {
         width: 100%;
         padding: 0 10px;
-        border: 0px solid #e3e3e3;
         display: block;
         float: left;
-        border-left: none;
         word-break: break-word;
+        border: none;
     }
 
     .eventlist-item-family {
@@ -1119,6 +1131,7 @@ ul.eventlist > li{
         display: block;
         position: absolute;
         right: 0;
+        border: none;
     }
 
     .g-html h2 {
@@ -1158,6 +1171,7 @@ ul.eventlist > li{
 
     .ng-scope .searchContainer, .ng-scope .searchContainer input.input-text-search[type="text"] {
         width: 100%;
+        margin-bottom: 18px;
     }
 
     .eventlist-item-timebox .ng-binding {
@@ -1438,4 +1452,49 @@ img.entry-content-mainpartner{
 .single-header {
     background: transparent url('img/head_finger.gif') no-repeat scroll center center;
     background-size: cover;
+}
+
+.page-template-page-sidebar_right2 .l-submain {
+    padding: 0 0;
+}
+
+.overhead{
+    background-color: #f9f9f9;
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+.overhead > div {
+    margin: 30px 30px;
+    border:1px solid #cccccc;
+    padding:28px 28px 18px 28px;
+    position:relative;
+}
+.overhead .overhead-title{
+    font-family: 'Varela Round';
+    font-size: 14px;
+    font-stretch: normal;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: normal;
+    position: absolute;
+    top: -19px;
+    background-color: #F9F9F9;
+    padding: 7px;
+    left: 21px;
+}
+
+.overhead .overhead-title-title{
+    font-family: 'Varela Round';
+    font-size: 16px;
+    font-stretch: normal;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+@media only screen and (max-width: 980px) {
+    .page-template-page-sidebar_right2 .l-submain {
+        padding: 0 40px;
+    }
 }
