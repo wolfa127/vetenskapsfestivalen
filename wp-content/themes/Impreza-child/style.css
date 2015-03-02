@@ -593,6 +593,7 @@ body.ie9 .ng-scope .searchContainer h6 {
 }
 
 ul.eventlist {
+    clear: left;
     margin-left: 0px;
 }
 
@@ -716,7 +717,7 @@ ul.eventlist > li{
 }
 
 .eventlist-item-content{
-    padding: 10px;
+    padding: 16px 10px;
     overflow: hidden;
     display: table-cell;
     text-align: left;
