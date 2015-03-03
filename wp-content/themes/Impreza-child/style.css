@@ -11,6 +11,9 @@ Author URI: http://us-themes.com/
 
 /* TESTING 3 */
 
+h1 {
+}
+
 h2{
     font-size: 3px;
     text-transform: uppercase
@@ -448,13 +451,13 @@ a.filter-button-subject:active{
 }
 
 .multiselect-parent.btn-group.dropdown-multiselect .dropdown-menu >li>a {
-    display: block;
-    padding: 3px 20px;
     clear: both;
-    white-space: nowrap;
+    display: block;
     overflow: hidden;
+    padding: 3px 20px;
     -webkit-transition: opacity 0.1s, padding 0.1s, color 0.1s, background-color 0.1s, box-shadow 0.1s, border 0.1s;
     transition: opacity 0.1s, padding 0.1s, color 0.1s, background-color 0.1s, box-shadow 0.1s, border 0.1s;
+    white-space: nowrap;
 }
 
 .multiselect-parent.btn-group.dropdown-multiselect .dropdown-menu li a:hover{
@@ -651,6 +654,7 @@ ul.eventlist > li{
 }
 .eventlist-item-container{
     display: table;
+    min-height: 6em;
     overflow: hidden;
     width: 100%;
 }
@@ -1264,9 +1268,116 @@ ul.eventlist > li{
     border-bottom: 1px solid #bfbfbf;
     clear:left;
     margin-bottom: 1em;
+    padding-bottom: 0.5em;
     text-align: right;
 }
 
+.sharewidgets .facebookButton {
+    background: rgb(76,105,186); /* Old browsers */
+    background: -moz-linear-gradient(top,  rgba(76,105,186,1) 0%, rgba(59,85,160,1) 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(76,105,186,1)), color-stop(100%,rgba(59,85,160,1))); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  rgba(76,105,186,1) 0%,rgba(59,85,160,1) 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  rgba(76,105,186,1) 0%,rgba(59,85,160,1) 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  rgba(76,105,186,1) 0%,rgba(59,85,160,1) 100%); /* IE10+ */
+    background: linear-gradient(to bottom,  rgba(76,105,186,1) 0%,rgba(59,85,160,1) 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4c69ba', endColorstr='#3b55a0',GradientType=0 ); /* IE6-9 */
+
+    border-radius: 2px;
+    color: #fff;
+    cursor: pointer;
+    font-size: 11px;
+    font-weight: bold;
+    height: 20px;
+    line-height: 20px;
+    margin-right: 10px;
+    padding: 2px 0 2px;
+    position: relative;
+    text-shadow: 0 -1px 0 #354c8c;
+    white-space: nowrap;
+}
+
+.sharewidgets .facebookButton:focus, .sharewidgets .facebookButton:hover, .sharewidgets .facebookButton:active {
+    background: rgb(90, 123, 212); /* Old browsers */
+    background: -moz-linear-gradient(top, rgba(90, 123, 212, 1) 0%, rgba(76, 106, 186, 1) 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(90, 123, 212, 1)), color-stop(100%, rgba(76, 106, 186, 1))); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, rgba(90, 123, 212, 1) 0%, rgba(76, 106, 186, 1) 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, rgba(90, 123, 212, 1) 0%, rgba(76, 106, 186, 1) 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, rgba(90, 123, 212, 1) 0%, rgba(76, 106, 186, 1) 100%); /* IE10+ */
+    background: linear-gradient(to bottom, rgba(90, 123, 212, 1) 0%, rgba(76, 106, 186, 1) 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#5a7bd4', endColorstr='#4c6aba', GradientType=0); /* IE6-9 */
+
+    color: #fff;
+}
+
+
+.sharewidgets .facebookButton i {
+    position: absolute;
+    top: 50%;
+    left: 3px;
+    margin-top: -7px;
+    width: 14px;
+    height: 14px;
+    background: transparent url(img/icon_facebook.png) no-repeat scroll 0 bottom;
+}
+
+.sharewidgets .facebookButton span {
+    padding: 0 3px 0 19px;
+    white-space: nowrap;
+}
+
+.sharewidgets .twitterButton {
+    background: #eee; /* Old browsers */
+    background: -moz-linear-gradient(top,  rgba(255,255,255,1) 0%, rgba(222,222,222,1) 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,1)), color-stop(100%,rgba(222,222,222,1))); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  rgba(255,255,255,1) 0%,rgba(222,222,222,1) 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  rgba(255,255,255,1) 0%,rgba(222,222,222,1) 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  rgba(255,255,255,1) 0%,rgba(222,222,222,1) 100%); /* IE10+ */
+    background: linear-gradient(to bottom,  rgba(255,255,255,1) 0%,rgba(222,222,222,1) 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#dedede',GradientType=0 ); /* IE6-9 */
+
+    border: #ccc solid 1px;
+    border-radius: 3px;
+    box-sizing: border-box;
+    color: #333;
+    cursor: pointer;
+    font-family: 'Helvetica Neue',Arial,sans-serif;
+    font-size: 11px;
+    font-weight: bold;
+    height: 20px;
+    margin-bottom: 2em;
+    overflow: hidden;
+    padding: 2px 0;
+    position: relative;
+    text-shadow: 0 1px 0 rgba(255,255,255,.5);
+}
+
+.sharewidgets .twitterButton:focus, .sharewidgets .twitterButton:hover, .sharewidgets .twitterButton:active {
+    border-color: #bbb;
+    background: #d9d9d9;
+    background: -moz-linear-gradient(top,  rgba(248,248,248,1) 0%, rgba(217,217,217,1) 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(248,248,248,1)), color-stop(100%,rgba(217,217,217,1))); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  rgba(248,248,248,1) 0%,rgba(217,217,217,1) 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  rgba(248,248,248,1) 0%,rgba(217,217,217,1) 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  rgba(248,248,248,1) 0%,rgba(217,217,217,1) 100%); /* IE10+ */
+    background: linear-gradient(to bottom,  rgba(248,248,248,1) 0%,rgba(217,217,217,1) 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f8f8f8', endColorstr='#d9d9d9',GradientType=0 ); /* IE6-9 */
+    color: #333;
+}
+
+.sharewidgets .twitterButton i {
+    position: absolute;
+    top: 50%;
+    left: 2px;
+    margin-top: -5px;
+    width: 16px;
+    height: 13px;
+    background: transparent url(img/icon_twitter.png) 0 0 no-repeat;
+}
+
+.sharewidgets .twitterButton span {
+    padding: 0 3px 0 19px;
+    white-space: nowrap;
+}
 
  /* ____________________  FOOTER ________________*/
 .entry-content {
