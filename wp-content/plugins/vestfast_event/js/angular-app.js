@@ -1,7 +1,7 @@
 var $jq = jQuery.noConflict();
 var myApp = angular.module('ngAppEvent',['ui.router','angularjs-dropdown-multiselect','angular-loading-bar','angular.filter', 'uiGmapgoogle-maps'])
     .run(
-    ['$rootScope', '$state', '$stateParams','$location',
+    ['$rootScope', '$state', '$stateParams','$location','$sce',
         function ($rootScope,   $state,   $stateParams, $location) {
 
             // It's very handy to add references to $state and $stateParams to the $rootScope
@@ -286,7 +286,7 @@ myApp.factory('eventService', [
     }
 ]);
 
-myApp.controller('VetShowEventController', function ($scope,$stateParams, $state , eventService, uiGmapGoogleMapApi) {
+myApp.controller('VetShowEventController', function ($scope,$stateParams, $state , eventService, uiGmapGoogleMapApi, $sce) {
 
     $scope.eventData;
     $scope.options = {scrollwheel: false};
@@ -300,7 +300,14 @@ myApp.controller('VetShowEventController', function ($scope,$stateParams, $state
         $scope.coordsUpdates++;
     });
 
+    $scope.eventDataDescription = function()
+    {
+        if($scope.eventData != null){
+            return $sce.trustAsHtml( $scope.eventData.description.replace(/\n/g, '<br>'));
+        }
 
+        return $sce.trustAsHtml("");
+    }
 
     uiGmapGoogleMapApi.then(function(maps) {
 
@@ -658,6 +665,18 @@ myApp.controller('VetEventsController', function ($scope ,$stateParams, eventSer
                 }
             }
         }
+
+
+        function compare(a,b) {
+            if (a.label < b.label)
+                return -1;
+            if (a.label > b.label)
+                return 1;
+            return 0;
+        }
+
+        venueListObjects.sort(compare);
+
         $scope.venueListObjects = venueListObjects;
     }
 

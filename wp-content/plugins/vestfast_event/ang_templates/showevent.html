@@ -31,7 +31,7 @@
     <div>
         <h1>{{eventData.title}} </h1>
         <h3 class="orange">{{eventData.event_type}} </h3>
-        <p>{{eventData.description}}</p>
+        <p ng-bind-html="eventDataDescription()"></p>
         <div class="overhead" ng-show="(eventData.overhead_title.length > 0) || (eventData.overhead_description.length > 0)">
             <div>
                 <span class="overhead-title">INGÅR I SERIEN</span>
