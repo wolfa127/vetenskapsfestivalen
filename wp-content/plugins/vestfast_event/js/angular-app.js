@@ -298,8 +298,9 @@ myApp.controller('VetShowEventController', function ($scope,$stateParams, $state
 
     $scope.eventDataDescription = function()
     {
-        if($scope.eventData != null){
-            return $sce.trustAsHtml( $scope.eventData.description.replace(/\n/g, '<br>'));
+        if($scope.eventData.description != undefined){
+            //return $sce.trustAsHtml( $scope.eventData.description.replace(/\n/g, '<br>'));
+            return $sce.trustAsHtml( $scope.eventData.description);
         }
 
         return $sce.trustAsHtml("");
