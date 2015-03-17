@@ -224,7 +224,6 @@ if (!class_exists('Vetfast_event')) {
 
             $getEventSubjects = "SELECT wp_vetfastevent.eventId, wp_vetfastevent_subjectTags.subject, wp_vetfastevent_subjectlist.subjectId FROM wp_vetfastevent, wp_vetfastevent_subjectlist, wp_vetfastevent_subjectTags where wp_vetfastevent.eventId = wp_vetfastevent_subjectlist.eventId and wp_vetfastevent_subjectlist.subjectId = wp_vetfastevent_subjectTags.id AND wp_vetfastevent.eventId = %d";
             $getEventSubjectsResult =  $wpdb->get_results( $wpdb->prepare( $getEventSubjects, $searchId), 'ARRAY_A' );
-
             foreach ( $getEventSubjectsResult as $key => $resultEventSubject )
             {
                 $resultListObj[] = array("subjectId" => $resultEventSubject['subjectId'], "subject" => $resultEventSubject['subject']);
@@ -233,7 +232,6 @@ if (!class_exists('Vetfast_event')) {
             //$getEventAccessibility = "SELECT wp_vetfastevent_accessibilityTags.accessibility FROM wp_vetfastevent_accessibilityTags, wp_vetfastevent_accessibilitylist where wp_vetfastevent_accessibilityTags.eventId = wp_vetfastevent_subjectlist.eventId and wp_vetfastevent_subjectlist.subjectId = wp_vetfastevent_subjectTags.id AND wp_vetfastevent.eventId = %d";
             $getEventAccessibility = "SELECT * FROM wp_vetfastevent_accessibilityTags, wp_vetfastevent_accessibilitylist WHERE wp_vetfastevent_accessibilityTags.id = wp_vetfastevent_accessibilitylist.accessibilityId AND wp_vetfastevent_accessibilitylist.eventid = %d";
             $getEventAccessibilityResult =  $wpdb->get_results( $wpdb->prepare( $getEventAccessibility, $searchId), 'ARRAY_A' );
-
             foreach ( $getEventAccessibilityResult as $key => $resultEventAccessibility )
             {
                 $resultAccessibilityObj[] = array("accessibilityId" => $resultEventAccessibility['accessibilityId'], "accessibility" => $resultEventAccessibility['accessibility']);

@@ -109,10 +109,8 @@ myApp.filter('dateToDateText', function(){
         var weekDays = ["Söndag","Måndag", "Tisdag", "Onsdag", "Torsdag", "Fredag", "Lördag"];
         var monthName = ["Januari", "Februari", "Mars", "April", "Maj", "Juni", "Juli", "Augusti", "September", "Oktober", "November", "December"];
 
-        var days = new Array();
-        var daysObjects = new Array();
+        var dObj =  {};
 
-        var dObj =  new Object();
         var d = new Date(item.split(" ")[0]);
         dObj.weekDayName = weekDays[d.getDay()];
         dObj.monthName = monthName[d.getMonth()];
@@ -122,7 +120,6 @@ myApp.filter('dateToDateText', function(){
     }
 
 });
-
 
 myApp.service('searchStatesService', function() {
     var data = {};
@@ -202,7 +199,7 @@ myApp.factory('eventService', [
                     return str.join("&");
                 },
                 data: { action: 'getEvents' }
-            }
+            };
             $http(req).success(function (data) {
                 service.eventsList = data;
                 def.resolve(data);
@@ -234,7 +231,7 @@ myApp.factory('eventService', [
                     return str.join("&");
                 },
                 data: { action: 'getEvent', eventId: searchEventId }
-            }
+            };
             $http(req).success(function (data) {
                 //service.vEvents = data;
                 def.resolve(data);
@@ -267,7 +264,7 @@ myApp.factory('eventService', [
                     return str.join("&");
                 },
                 data: { action: 'get_event' }
-            }
+            };
             $http(req).success(function (data) {
                 //service.vEvents = data;
                 def.resolve(data);
@@ -286,13 +283,12 @@ myApp.factory('eventService', [
     }
 ]);
 
-myApp.controller('VetShowEventController', function ($scope,$stateParams, $state , eventService, uiGmapGoogleMapApi, $sce) {
+myApp.controller('VetShowEventController', function ($scope,$stateParams, $state , eventService, uiGmapGoogleMapApi, $timeout,  $sce) {
 
-    $scope.eventData;
+    $scope.eventData = {};
     $scope.options = {scrollwheel: false};
     $scope.coordsUpdates = 0;
     $scope.dynamicMoveCtr = 0;
-    $scope.dynamicUrl = "";
 
     $scope.$watchCollection("marker.coords", function (newVal, oldVal) {
         if (_.isEqual(newVal, oldVal))
@@ -337,13 +333,13 @@ myApp.controller('VetShowEventController', function ($scope,$stateParams, $state
     }
         //document.location.toString().toLowerCase()
     $scope.getEventUrl = function () {
-        $scope.dynamicUrl = "http://www.facebook.com/plugins/share_button.php?href=" + encodeURIComponent(document.location.href) + "&layout=button_count";
+        $scope.dynamicUrl = encodeURIComponent(document.location.href);
         //$scope.dynamicUrl = encodeURIComponent(document.location.href);
-    }
+    };
 
     $scope.scrollToTop  = function () {
         window.scrollTo(0, 0);
-    }
+    };
 
     $scope.getEvent = function (id) {
         //Nice hack to remove header content :-)
@@ -353,9 +349,12 @@ myApp.controller('VetShowEventController', function ($scope,$stateParams, $state
                 $scope.getEventUrl();
 
                 $scope.eventData = myEvent[0];
+
                 if($scope.eventData.geo_position != "" ){
+                    $scope.render = true;
                     createDataMarker($scope.eventData);
-                };
+                }
+
                 //console.log("DATA SUCCESS ");
                 //console.log(myEvent);
             },
@@ -364,8 +363,9 @@ myApp.controller('VetShowEventController', function ($scope,$stateParams, $state
             });
 
     };
+
     $scope.getEvent($stateParams.eventId);
-})
+});
 
 myApp.controller('VetEventsController', function ($scope ,$stateParams, eventService,searchStatesService ) {
     $scope.venueListDropdownTexts = {buttonDefaultText: 'VÄLJ PLATS', checkAll: 'MARKERA ALLA', uncheckAll:'AVMARKERA ALLA',  dynamicButtonTextSuffix:'VALDA PLATSER' };
@@ -374,9 +374,9 @@ myApp.controller('VetEventsController', function ($scope ,$stateParams, eventSer
     $scope.eventList = [];
     // $scope.filteredEventList =  $filter('searchDays')($scope.eventList);
     $scope.subjectsList = [];
-    $scope.subjectsListObjects = new Array();
-    $scope.daysListObjects = new Array();
-    $scope.venueListObjects = new Array();
+    $scope.subjectsListObjects = [];
+    $scope.daysListObjects = [];
+    $scope.venueListObjects = [];
     $scope.familyFilter = 0;
     $scope.venueListDropdownModel = [];
     $scope.indexedGroups = [];
@@ -396,13 +396,14 @@ myApp.controller('VetEventsController', function ($scope ,$stateParams, eventSer
 
     function init(){
        $scope.selectedDaysList = searchStatesService.getSelectedDays();
-        for (var i = 0; i < $scope.daysListObjects.length; i++) {
+        var i = 0;
+        for (i = 0; i < $scope.daysListObjects.length; i++) {
             if(($scope.selectedDaysList.indexOf($scope.daysListObjects[i].cleanDayDate) >= 0) && ($scope.selectedDaysList.length > 0)){
                 $scope.daysListObjects[i].selected = true;
             }
         }
        $scope.selectedSubjectsList = searchStatesService.getSelectedCategoreis();
-        for (var i = 0; i < $scope.subjectsListObjects.length; i++) {
+        for (i = 0; i < $scope.subjectsListObjects.length; i++) {
             //console.log($scope.subjectsListObjects);
             if(($scope.selectedSubjectsList.indexOf($scope.subjectsListObjects[i].subject) >= 0) && ($scope.selectedSubjectsList.length > 0)){
                 $scope.subjectsListObjects[i].selected = true;
@@ -412,13 +413,10 @@ myApp.controller('VetEventsController', function ($scope ,$stateParams, eventSer
         $scope.searchText2 = searchStatesService.getSearchStringFilter();
         if(searchStatesService.getvenueFilter() != undefined)
             $scope.venueListDropdownModel = searchStatesService.getvenueFilter();
-    };
+    }
 
     $scope.search = function (item){
-        if (item.subjectList.indexOf($scope.query) != -1) {
-            return true;
-        }
-        return false;
+        return item.subjectList.indexOf($scope.query) != -1;
     };
 
     $scope.searchDays = function (item){
@@ -426,25 +424,17 @@ myApp.controller('VetEventsController', function ($scope ,$stateParams, eventSer
             return true;
         }
         var res = item.event_start.split(" ");
-        if (($scope.selectedDaysList.indexOf(res[0]) != -1) ) {
-            return true;
-        }
-        return false;
-    }
+
+        return ($scope.selectedDaysList.indexOf(res[0]) != -1);
+    };
 
     $scope.searchSubjects = function (item){
         //console.log($scope.selectedSubjectsList);
         if($scope.selectedSubjectsList.length == 0){
             return true;
         }
-        if (checkInSubjects(item, $scope.selectedSubjectsList)) {
-            //console.log("!!!!!!!!!!!!!!!!!!!!!!!");
-            return true;
-        }
-        return false;
-    }
-
-
+        return checkInSubjects(item, $scope.selectedSubjectsList);
+    };
 
     $scope.searchVenues = function (item){
         var venues = Array();
@@ -455,11 +445,9 @@ myApp.controller('VetEventsController', function ($scope ,$stateParams, eventSer
         if($scope.venueListDropdownModel.length == 0){
             return true;
         }
-        if (venues.indexOf(item.venue) != -1) {
-            return true;
-        }
-        return false;
-    }
+
+        return venues.indexOf(item.venue) > -1;
+    };
 
     function checkInSubjects(item, selectedSubjects ){
         //console.log("--"+  item.title + item.subjectList.length );
@@ -483,18 +471,18 @@ myApp.controller('VetEventsController', function ($scope ,$stateParams, eventSer
             $scope.familyFilter = 0;
             searchStatesService.setFamilyFilter(0);
         }else{
-            $scope.familyFilter = 1
+            $scope.familyFilter = 1;
             searchStatesService.setFamilyFilter(1);
         }
-    }
+    };
 
     $scope.textSearchChange = function (){
         searchStatesService.setSearchStringFilter($scope.searchText2);
-    }
+    };
 
     $scope.venueSelect = function(){
         searchStatesService.setvenueFilter($scope.venueListDropdownModel);
-    }
+    };
 
     $scope.filterSubjectClick = function (){
         //console.log(this.subject.subject);
@@ -508,9 +496,9 @@ myApp.controller('VetEventsController', function ($scope ,$stateParams, eventSer
             var pos =  $scope.selectedSubjectsList.indexOf(selectedSubject);
             $scope.selectedSubjectsList.splice(pos, 1);
         }
-        searchStatesService.setSelectedCategoreis($scope.selectedSubjectsList)
+        searchStatesService.setSelectedCategoreis($scope.selectedSubjectsList);
         //console.log($scope.selectedSubjectsList);
-    }
+    };
 
     $scope.filterDaysClick =  function (){
         if($scope.selectedDaysList.indexOf(this.day.cleanDayDate) == -1 ){
@@ -523,7 +511,7 @@ myApp.controller('VetEventsController', function ($scope ,$stateParams, eventSer
             this.day.selected = false;
         }
         searchStatesService.setSelectedDays($scope.selectedDaysList);
-    }
+    };
 
     $scope.searchFamilyFilter = function (item){
         if(searchStatesService.getFamilyFilter() == 0){
@@ -535,7 +523,7 @@ myApp.controller('VetEventsController', function ($scope ,$stateParams, eventSer
             }
         }
         return false;
-    }
+    };
 
    /* $scope.filterDaysGroup = function(eventItem) {
         var groupIsNew = $scope.indexedGroups.indexOf(eventItem.event_dategroup) == -1;
@@ -553,7 +541,7 @@ myApp.controller('VetEventsController', function ($scope ,$stateParams, eventSer
                 $scope.eventList = myEvents;
              //   console.log("Events Loaded");
                 renderDateGroupName();
-                renderDateButtons()
+                renderDateButtons();
                 renderSubjects();
                 renderVenues();
                  init();
@@ -568,10 +556,9 @@ myApp.controller('VetEventsController', function ($scope ,$stateParams, eventSer
     function renderDateGroupName(){
         var weekDays = ["Söndag","Måndag", "Tisdag", "Onsdag", "Torsdag", "Fredag", "Lördag"];
         var monthName = ["Januari", "Februari", "Mars", "April", "Maj", "Juni", "Juli", "Augusti", "September", "Oktober", "November", "December"];
-        var days = new Array();
+
         for (var i = 0; i < $scope.eventList.length; i++) {
-            var tempDate = $scope.eventList[i]["event_start"].split(" ")[0];
-            var dObj =  new Object();
+            var dObj =  {};
             var d = new Date($scope.eventList[i]["event_start"].split(" ")[0]);
             dObj.cleanDayDate = $scope.eventList[i]["event_start"].split(" ")[0];
             dObj.weekDayName = weekDays[d.getDay()];
@@ -593,14 +580,14 @@ myApp.controller('VetEventsController', function ($scope ,$stateParams, eventSer
         var weekDays = ["Söndag","Måndag", "Tisdag", "Onsdag", "Torsdag", "Fredag", "Lördag"];
         var monthName = ["Januari", "Februari", "Mars", "April", "Maj", "Juni", "Juli", "Augusti", "September", "Oktober", "November", "December"];
 
-        var days = new Array();
-        var daysObjects = new Array();
+        var days = [];
+        var daysObjects = [];
 
         for (var i = 0; i < $scope.eventList.length; i++) {
             //var tempDate = d.getFullYear() + "-" + d.getMonth() + "-" + d.getDate();
             var tempDate = $scope.eventList[i]["event_start"].split(" ")[0];
             if(days.indexOf(tempDate) == -1){
-                var dObj =  new Object();
+                var dObj =  {};
                 //days. push(d.getFullYear() + "-" + d.getMonth() + "-" + d.getDate());
                 //console.log($scope.eventList[i]["event_start"].split(" ")[0]);
                 var d = new Date($scope.eventList[i]["event_start"].split(" ")[0]);
@@ -622,15 +609,15 @@ myApp.controller('VetEventsController', function ($scope ,$stateParams, eventSer
 
     function renderSubjects(){
 
-        var subjectsList = new Array();
-        var subjectsListObjects = new Array();
+        var subjectsList = [];
+        var subjectsListObjects = [];
 
         for (var i = 0; i < $scope.eventList.length; i++) {
             var subList = $scope.eventList[i]['subjectList'];
             if(subList.length > 0){
                 for (var ii = 0; ii < subList.length; ii++) {
                     if(subjectsList.indexOf(subList[ii]) == -1){
-                        var subjectObj =  new Object();
+                        var subjectObj =  {};
                         subjectObj.subject = subList[ii];
                         subjectObj.selected = false;
 
@@ -647,15 +634,15 @@ myApp.controller('VetEventsController', function ($scope ,$stateParams, eventSer
 
     function renderVenues(){
 
-        var venueList = new Array();
-        var venueListObjects = new Array();
+        var venueList = [];
+        var venueListObjects = [];
 
         for (var i = 0; i < $scope.eventList.length; i++) {
             var venue = String($scope.eventList[i]['venue']).trim();
 
             if(venue !=''){
                 if(venueList.indexOf(venue) == -1){
-                    var venueObj =  new Object();
+                    var venueObj =  {};
                     venueObj.venue = venue;
                     venueObj.label = venue;
                     venueObj.id = $scope.eventList[i]['eventId'];
@@ -681,6 +668,6 @@ myApp.controller('VetEventsController', function ($scope ,$stateParams, eventSer
     }
 
     $scope.getEvents();
-})
+});
 
 

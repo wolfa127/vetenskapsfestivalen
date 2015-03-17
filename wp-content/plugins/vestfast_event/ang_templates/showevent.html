@@ -1,13 +1,5 @@
 
 <div id="fb-root"></div>
-<script>
-    (function(d, s, id) {
-        var js, fjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) return;
-        js = d.createElement(s); js.id = id;
-        js.src = "//connect.facebook.net/sv_SE/sdk.js#xfbml=1&version=v2.0";
-        fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));</script>
 
 <div class="eventPartContainer" ng-init="scrollToTop()">
     <div class="imagepart" ng-hide="eventData.image_url == ''">
@@ -40,21 +32,21 @@
             </div>
         </div>
         <p ng-show="eventData.crew.length"><span class="crew bold">Medverkande: </span>{{eventData.crew}}</p>
-        <p  ng-show="eventData.venue_adress.length"><span class="crew bold">Adress: </span>{{eventData.venue_adress}}</p>
-        <p ng-show="eventData.links.length > 0"><span class="links bold">Relaterade Länkar: </span><span ng-repeat="link in eventData.links"><a href="{{link.url}}">{{link.title}}</a>{{$last ? '' : ', '}}</span></p>
         <p ng-show="eventData.accessibilityList.length > 0"><span class="links bold">Tillgänglighet: </span><span ng-repeat="accessibility in eventData.accessibilityList">{{accessibility.accessibility}}{{$last ? '' : ', '}}</span></p>
+
+        <p ng-show="eventData.links.length > 0"><span class="links bold">Relaterade Länkar: </span><span ng-repeat="link in eventData.links"><a href="{{link.url}}">{{link.title}}</a>{{$last ? '' : ', '}}</span></p>
         <p ng-show="eventData.subjectList.length > 0"><span class="crew bold">Programkategorier: </span><span ng-repeat="subjectObject in eventData.subjectList">{{subjectObject.subject}}{{$last ? '' : ', '}}</span></p>
+        <p ng-show="eventData.venue_adress.length"><span class="crew bold">Adress: </span>{{eventData.venue_adress}}</p>
         <p ng-show="eventData.closest_public_transport.length > 0"><span class="crew bold">Närmaste hållplats: </span>{{eventData.closest_public_transport}}</p>
-        <p ng-show="eventData.closest_public_transport.length > 0"><span class="crew bold">Närmaste hållplats: </span>{{eventData.closest_public_transport}}</p>
-        <div class="sharewidgets">
-            <div id="facebookShare" class="fb-share-button" data-href="{{getEventUrl}}" data-layout="button"></div>
-            <a href="https://twitter.com/share" class="twitter-share-button" data-count="none">Tweet</a>
-            <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
+        <div id="sharewidgets" class="sharewidgets">
+            <a class="facebookButton" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u={{dynamicUrl}}"><i></i><span>Dela</span></a>
+            <a class="twitterButton" target="_blank" href="https://twitter.com/share?url={{dynamicUrl}}"><i></i><span>Twittra</span></a>
         </div>
 
     </div>
 
-    <div id="map_canvas" ng-show="eventData.gmap.map != undefined" class="">
+    <div id="map_canvas" ng-if="render" class="">
         <ui-gmap-google-map center="eventData.gmap.map.center" zoom="eventData.gmap.map.zoom" draggable="true" options="options">
             <ui-gmap-marker coords="eventData.gmap.marker.coords" options="eventData.gmap.marker.options" events="eventData.gmap.marker.events" idkey="eventData.gmap.marker.id">
             </ui-gmap-marker>
