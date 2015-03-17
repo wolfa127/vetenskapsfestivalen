@@ -39,7 +39,10 @@
         <p ng-show="eventData.venue_adress.length"><span class="crew bold">Adress: </span>{{eventData.venue_adress}}</p>
         <p ng-show="eventData.closest_public_transport.length > 0"><span class="crew bold">Närmaste hållplats: </span>{{eventData.closest_public_transport}}</p>
 
-        <div id="sharewidgets" class="sharewidgets"></div>
+        <div id="sharewidgets" class="sharewidgets">
+            <a class="facebookButton" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u={{dynamicUrl}}"><i></i><span>Dela</span></a>
+            <a class="twitterButton" target="_blank" href="https://twitter.com/share?url={{dynamicUrl}}"><i></i><span>Twittra</span></a>
+        </div>
 
     </div>
 
@@ -54,7 +57,3 @@
 
 </div>
 
-<script>
-    $jq('#sharewidgets').append('<a class="facebookButton" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(document.location.href)+'"><i></i><span>Dela</span></a>');
-    $jq('#sharewidgets').append('<a class="twitterButton" target="_blank" href="https://twitter.com/share?url='+encodeURIComponent(document.location.href)+'"><i></i><span>Twittra</span></a>');
-</script>

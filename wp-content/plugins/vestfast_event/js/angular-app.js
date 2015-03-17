@@ -324,6 +324,11 @@ myApp.controller('VetShowEventController', function ($scope, $timeout, $statePar
         eventItem.gmap.map = _map;
         eventItem.gmap.marker = _marker;
     }
+        //document.location.toString().toLowerCase()
+    $scope.getEventUrl = function () {
+        $scope.dynamicUrl = encodeURIComponent(document.location.href);
+        //$scope.dynamicUrl = encodeURIComponent(document.location.href);
+    };
 
     $scope.scrollToTop  = function () {
         window.scrollTo(0, 0);
@@ -334,6 +339,8 @@ myApp.controller('VetShowEventController', function ($scope, $timeout, $statePar
         $jq('.eventContent').hide();
         eventService.getEventbyId(id)
             .then(function (myEvent) {
+                $scope.getEventUrl();
+
                 $scope.eventData = myEvent[0];
 
                 if($scope.eventData.geo_position != "" ){
