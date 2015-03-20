@@ -574,6 +574,7 @@ input[type="text"].input-text-search{
 .ng-scope .searchContainer {
     float: left;
     position: relative;
+    margin-bottom: 18px;
 }
 
 .ng-scope .searchContainer h6 {
@@ -844,6 +845,10 @@ ul.eventlist > li{
     width: 36px;
     right: 12px;
     top: 37%;
+}
+
+.event-description{
+    font-size: 1.2em;
 }
 
 .l-main > .l-submain > .l-submain-h > .l-content > .l-submain > .l-submain-h {

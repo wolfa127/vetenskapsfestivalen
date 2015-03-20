@@ -1,6 +1,7 @@
 <?php
 
 global $smof_data;
+define('ANGULAR_HEADER', '1');
 get_header(); ?>
 <?php if (have_posts()) { while(have_posts()) { the_post(); ?>
     <?php get_template_part( 'templates/pagehead' ); ?>
@@ -19,7 +20,7 @@ get_header(); ?>
         <div class="l-submain-h g-html i-cf">
             <div class="g-cols offset_default">
                 <div class="full-width">
-                    <div ng-app="ngAppEvent" ><div ui-view autoscroll="true" ></div>
+                    <div><div ui-view autoscroll="true" ></div>
 
 
                     </div>

@@ -2,14 +2,15 @@ var $jq = jQuery.noConflict();
 var myApp = angular.module('ngAppEvent',['ui.router','angularjs-dropdown-multiselect','angular-loading-bar','angular.filter', 'uiGmapgoogle-maps'])
     .run(
     ['$rootScope', '$state', '$stateParams','$location','$sce',
-        function ($rootScope,   $state,   $stateParams, $location) {
-
+        function ($rootScope,   $state,   $stateParams, $location, $sce) {
+            console.log("start -------------")
             // It's very handy to add references to $state and $stateParams to the $rootScope
             // so that you can access them from any scope within your applications.For example,
             // <li ng-class="{ active: $state.includes('contacts.list') }"> will set the <li>
             // to active whenever 'contacts.list' or one of its decendents is active.
             $rootScope.$state = $state;
             $rootScope.$stateParams = $stateParams;
+
         }
     ]
 )
@@ -28,7 +29,7 @@ var myApp = angular.module('ngAppEvent',['ui.router','angularjs-dropdown-multise
                 //   .when('/c?id', '/contacts/:id')
                 //   .when('/user/:id', '/contacts/:id')
 
-                // If the url is ever invalid, e.g. '/asdf', then redirect to '/' aka the home state
+                // If the url is eve    r invalid, e.g. '/asdf', then redirect to '/' aka the home state
                 .otherwise('/');
 
             //////////////////////////
@@ -41,17 +42,18 @@ var myApp = angular.module('ngAppEvent',['ui.router','angularjs-dropdown-multise
                 .state("home", {
                     url: "/",
                     templateUrl: pluginUrl + 'ang_templates/events.html',
-                    controller: 'VetEventsController'
+                    controller: 'VetEventsController',
                 })
 
                 .state("event", {
                     url: "/event/:eventId",
                     templateUrl: pluginUrl + 'ang_templates/showevent.html',
-                    controller: 'VetShowEventController'
+                    controller: 'VetShowEventController',
                 })
         }
     ]
 );
+
 
 
 myApp.config(function ($provide) {
@@ -283,12 +285,14 @@ myApp.factory('eventService', [
     }
 ]);
 
-myApp.controller('VetShowEventController', function ($scope,$stateParams, $state , eventService, uiGmapGoogleMapApi, $timeout,  $sce) {
+myApp.controller('VetShowEventController', function ($scope,$stateParams, $state , eventService, uiGmapGoogleMapApi, $timeout,  $sce, $rootScope) {
 
     $scope.eventData = {};
     $scope.options = {scrollwheel: false};
     $scope.coordsUpdates = 0;
     $scope.dynamicMoveCtr = 0;
+    $scope.testTitle = "ja";
+
 
     $scope.$watchCollection("marker.coords", function (newVal, oldVal) {
         if (_.isEqual(newVal, oldVal))
@@ -345,12 +349,13 @@ myApp.controller('VetShowEventController', function ($scope,$stateParams, $state
     $scope.getEvent = function (id) {
         //Nice hack to remove header content :-)
         $jq('.eventContent').hide();
+        //Set title
+
         eventService.getEventbyId(id)
             .then(function (myEvent) {
                 $scope.getEventUrl();
-
                 $scope.eventData = myEvent[0];
-
+                $rootScope.currTitle = $sce.trustAsHtml("Vetenskapsfestivalen - " + myEvent[0].title);
                 if($scope.eventData.geo_position != "" ){
                     $scope.render = true;
                     createDataMarker($scope.eventData);
@@ -368,7 +373,7 @@ myApp.controller('VetShowEventController', function ($scope,$stateParams, $state
     $scope.getEvent($stateParams.eventId);
 });
 
-myApp.controller('VetEventsController', function ($scope ,$stateParams, eventService,searchStatesService ) {
+myApp.controller('VetEventsController', function ($scope ,$stateParams, eventService,searchStatesService, $rootScope, $sce ) {
     $scope.venueListDropdownTexts = {buttonDefaultText: 'VÄLJ PLATS', checkAll: 'MARKERA ALLA', uncheckAll:'AVMARKERA ALLA',  dynamicButtonTextSuffix:'VALDA PLATSER' };
     $scope.selectedDaysList = [];
     $scope.selectedSubjectsList = [];
@@ -382,6 +387,8 @@ myApp.controller('VetEventsController', function ($scope ,$stateParams, eventSer
     $scope.venueListDropdownModel = [];
     $scope.indexedGroups = [];
     $scope.searchText2 = "";
+
+    $rootScope.currTitle = $sce.trustAsHtml("Vetenskapsfestivalen - Program");
 
     $scope.venueListDropdownSettings = {
         scrollableHeight: '300px',
@@ -451,8 +458,6 @@ myApp.controller('VetEventsController', function ($scope ,$stateParams, eventSer
     };
 
     function checkInSubjects(item, selectedSubjects ){
-        //console.log("--"+  item.title + item.subjectList.length );
-        //console.log( item.subjectList );
         var foundInArray = false;
         if(item.subjectList.length > 0) {
 
@@ -670,5 +675,3 @@ myApp.controller('VetEventsController', function ($scope ,$stateParams, eventSer
 
     $scope.getEvents();
 });
-
-

@@ -1,8 +1,31 @@
-<?php global $smof_data; ?><!DOCTYPE HTML>
-<html <?php language_attributes('html')?>>
+<?php global $smof_data;
+$angular_attribute = '';
+if (defined('ANGULAR_HEADER')) {
+    $angular_attribute = 'ng-app="ngAppEvent"';
+}
+
+?><!DOCTYPE HTML>
+<html <?php language_attributes('html')?> <?php echo $angular_attribute ?> >
 <head>
 	<meta charset="UTF-8">
-	<title><?php if (defined('WPSEO_VERSION')) { wp_title(); } else { bloginfo('name'); wp_title(' - ', true, 'left'); } ?></title>
+    <?php
+    if (defined('ANGULAR_HEADER')) {
+        ?>
+        <title ng-bind-html="currTitle"></title>
+        <?php
+    }
+    else{
+        ?>
+        <title><?php if (defined('WPSEO_VERSION')) { wp_title(); } else { bloginfo('name'); wp_title(' - ', true, 'left'); } ?></title>
+        <?php
+    }
+    ?>
+
+    <meta property="og:title" content="Vetenskapsfestivalen - Program" />
+    <meta property="og:image" content="http://vetenskapsfestivalen.se/v2/wp-content/themes/Impreza-child/img/logo.jpg" />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width" content="200" />
+    <meta property="og:image:height" content="200" />
 
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 	<meta name="SKYPE_TOOLBAR" content="SKYPE_TOOLBAR_PARSER_COMPATIBLE" />
