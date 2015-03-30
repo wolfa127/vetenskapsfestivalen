@@ -3,7 +3,6 @@ var myApp = angular.module('ngAppEvent',['ui.router','angularjs-dropdown-multise
     .run(
     ['$rootScope', '$state', '$stateParams','$location','$sce',
         function ($rootScope,   $state,   $stateParams, $location, $sce) {
-            console.log("start -------------")
             // It's very handy to add references to $state and $stateParams to the $rootScope
             // so that you can access them from any scope within your applications.For example,
             // <li ng-class="{ active: $state.includes('contacts.list') }"> will set the <li>
@@ -14,8 +13,8 @@ var myApp = angular.module('ngAppEvent',['ui.router','angularjs-dropdown-multise
         }
     ]
 )
-    .config(['$stateProvider', '$urlRouterProvider',
-        function ($stateProvider,   $urlRouterProvider) {
+    .config(['$stateProvider', '$urlRouterProvider','$locationProvider',
+        function ($stateProvider,   $urlRouterProvider, $locationProvider) {
 
             /////////////////////////////
             // Redirects and Otherwise //
@@ -49,7 +48,12 @@ var myApp = angular.module('ngAppEvent',['ui.router','angularjs-dropdown-multise
                     url: "/event/:eventId",
                     templateUrl: pluginUrl + 'ang_templates/showevent.html',
                     controller: 'VetShowEventController',
-                })
+                });
+
+            $locationProvider.html5Mode({
+                enabled: true,
+                requireBase: false
+            });
         }
     ]
 );
@@ -355,14 +359,13 @@ myApp.controller('VetShowEventController', function ($scope,$stateParams, $state
             .then(function (myEvent) {
                 $scope.getEventUrl();
                 $scope.eventData = myEvent[0];
-                $rootScope.currTitle = $sce.trustAsHtml("Vetenskapsfestivalen - " + myEvent[0].title);
+
+
                 if($scope.eventData.geo_position != "" ){
                     $scope.render = true;
                     createDataMarker($scope.eventData);
                 }
 
-                //console.log("DATA SUCCESS ");
-                //console.log(myEvent);
             },
             function () {
                 //console.log('Load error.');
@@ -389,6 +392,7 @@ myApp.controller('VetEventsController', function ($scope ,$stateParams, eventSer
     $scope.searchText2 = "";
 
     $rootScope.currTitle = $sce.trustAsHtml("Vetenskapsfestivalen - Program");
+    $rootScope.currDesc = $sce.trustAsHtml("");
 
     $scope.venueListDropdownSettings = {
         scrollableHeight: '300px',

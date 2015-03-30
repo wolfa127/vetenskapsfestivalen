@@ -2,8 +2,8 @@
 $angular_attribute = '';
 if (defined('ANGULAR_HEADER')) {
     $angular_attribute = 'ng-app="ngAppEvent"';
+    $current_url = home_url(add_query_arg(array(),$wp->request));
 }
-
 ?><!DOCTYPE HTML>
 <html <?php language_attributes('html')?> <?php echo $angular_attribute ?> >
 <head>
@@ -11,7 +11,8 @@ if (defined('ANGULAR_HEADER')) {
     <?php
     if (defined('ANGULAR_HEADER')) {
         ?>
-        <title ng-bind-html="currTitle"></title>
+        <title><?=get_the_title()?></title>
+        <base href="<?=$current_url . "/" ?>">
         <?php
     }
     else{
@@ -20,12 +21,6 @@ if (defined('ANGULAR_HEADER')) {
         <?php
     }
     ?>
-
-    <meta property="og:title" content="Vetenskapsfestivalen - Program" />
-    <meta property="og:image" content="http://vetenskapsfestivalen.se/v2/wp-content/themes/Impreza-child/img/logo.jpg" />
-    <meta property="og:image:type" content="image/jpeg" />
-    <meta property="og:image:width" content="200" />
-    <meta property="og:image:height" content="200" />
 
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 	<meta name="SKYPE_TOOLBAR" content="SKYPE_TOOLBAR_PARSER_COMPATIBLE" />
@@ -96,6 +91,7 @@ $page_title_style_class = 'title_'.preg_replace('/\W+/', '', strtolower(get_the_
 
 <body <?php body_class('l-body ' .$page_title_style_class.$ie_style_class.$ie9_style_class.$theme_class.$woocommerce_class); ?><?php echo  ($body_background_styles_text != '')?' style="'.$body_background_styles_text.'"':''; ?>>
 <?php
+
 if (defined('IS_FULLWIDTH') AND IS_FULLWIDTH)
 {
 	$sidebar_position_class = 'col_cont';

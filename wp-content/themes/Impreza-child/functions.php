@@ -432,6 +432,11 @@ add_filter( 'wp_image_editors', 'ms_image_editor_default_to_gd' );
 // (in case using the meta box class in another plugin)
 // This is also helpfull
 
+function add_query_vars_filter( $vars ){
+$vars[] = "u";
+  return $vars;
+}
+add_filter( 'query_vars', 'add_query_vars_filter' );
 
 add_action( 'admin_init', 'us_register_meta_boxes2' );
 
