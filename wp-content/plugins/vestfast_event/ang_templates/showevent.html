@@ -21,23 +21,23 @@
         <div class="familyicon" ng-show="eventData.family_activity == 1">  </div>
     </div>
     <div>
-        <h1>{{eventData.title}} </h1>
+        <h1 ng-bind-html="eventData.title | to_trusted" ></h1>
         <h3 class="orange">{{eventData.event_type}} </h3>
-        <p class="event-description" ng-bind-html="eventDataDescription()"></p>
+        <p class="event-description" ng-bind-html="eventData.description | to_trusted"></p>
         <div class="overhead" ng-show="(eventData.overhead_title.length > 0) || (eventData.overhead_description.length > 0)">
             <div>
                 <span class="overhead-title">INGÅR I SERIEN</span>
-                <p ng-show="eventData.overhead_title.length" class="overhead-title-title">{{eventData.overhead_title}}</p>
-                <p ng-show="eventData.overhead_description.length">{{eventData.overhead_description}}</p>
+                <p ng-show="eventData.overhead_title.length" class="overhead-title-title" ng-bind-html="eventData.overhead_title | to_trusted"></p>
+                <p ng-show="eventData.overhead_description.length" ng-bind-html="eventData.overhead_description | to_trusted"></p>
             </div>
         </div>
-        <p ng-show="eventData.crew.length"><span class="crew bold">Medverkande: </span>{{eventData.crew}}</p>
+        <p ng-show="eventData.crew.length"><span class="crew bold">Medverkande: </span><span ng-bind-html="eventData.crew | to_trusted"></span></p>
         <p ng-show="eventData.accessibilityList.length > 0"><span class="links bold">Tillgänglighet: </span><span ng-repeat="accessibility in eventData.accessibilityList">{{accessibility.accessibility}}{{$last ? '' : ', '}}</span></p>
 
         <p ng-show="eventData.links.length > 0"><span class="links bold">Relaterade Länkar: </span><span ng-repeat="link in eventData.links"><a href="{{link.url}}">{{link.title}}</a>{{$last ? '' : ', '}}</span></p>
         <p ng-show="eventData.subjectList.length > 0"><span class="crew bold">Programkategorier: </span><span ng-repeat="subjectObject in eventData.subjectList">{{subjectObject.subject}}{{$last ? '' : ', '}}</span></p>
-        <p ng-show="eventData.venue_adress.length"><span class="crew bold">Adress: </span>{{eventData.venue_adress}}</p>
-        <p ng-show="eventData.closest_public_transport.length > 0"><span class="crew bold">Närmaste hållplats: </span>{{eventData.closest_public_transport}}</p>
+        <p ng-show="eventData.venue_adress.length"><span class="crew bold">Adress: </span><span ng-bind-html="eventData.venue_adress | to_trusted"></span></p>
+        <p ng-show="eventData.closest_public_transport.length > 0"><span class="crew bold">Närmaste hållplats: </span><span ng-bind-html="eventData.closest_public_transport | to_trusted"></span></p>
 
         <div id="sharewidgets" class="sharewidgets">
             <a class="facebookButton" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u={{dynamicUrl}}"><i></i><span>Dela</span></a>

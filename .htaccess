@@ -2,23 +2,29 @@
 # BEGIN WordPress
 <IfModule mod_rewrite.c>
 RewriteEngine On
-RewriteRule ^(.+)/program/event/(\d+)  share.php?id=$2 [L]
-#RewriteRule ^program/event/(\d+)  /vetenskapsfestivalen/share.php?id=$1 [L]
-#RewriteRule . /vetenskapsfestivalen/index.php
 
-
-
-#RewriteBase /vetenskapsfestivalen/
-#RewriteRule ^index\.php$ - [L]
-#RewriteCond %{REQUEST_FILENAME} !-f
-#RewriteCond %{REQUEST_FILENAME} !-d
-#RewriteRule . /vetenskapsfestivalen/index.php [L]
-
+#LIVE ------------------------------
 RewriteBase /
+RewriteRule ^(.+)/program/event/(\d+)  share.php?id=$2 [L]  #LIVE
+
+#LOCAL ----------------------------
+##RewriteRule ^vetenskapsfestivalen/program/event/18630 share.php?id=$1 [L]
+
+#LOCAL ------------------------------
+RewriteBase /
+RewriteCond %{HTTP_HOST} ^localhost$ [NC]
 RewriteRule ^index\.php$ - [L]
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule . /index.php [L]
+RewriteRule . /vetenskapsfestivalen/index.php [L]
+
+
+#LIVE ------------------------------
+#RewriteBase /
+#RewriteRule ^index\.php$ - [L]
+#RewriteCond %{REQUEST_FILENAME} !-f
+#RewriteCond %{REQUEST_FILENAME} !-d
+#RewriteRule . /index.php [L]
 </IfModule>
 
 # END WordPress

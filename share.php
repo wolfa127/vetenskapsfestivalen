@@ -36,15 +36,14 @@ else{
     <meta property="og:title" content="<?=$sq_results[0]['title']?>" />
     <meta property="og:image" content="<?=$imageUrl?>" />
     <meta property="og:image:type" content="image/jpeg" />
-    <meta property="og:image:width" content="200" />
-    <meta property="og:image:height" content="200" />
     <meta property="og:description" content="<?=htmlspecialchars($sq_results[0]['description'])?>" />
     <meta property="og:url" content="<?=home_url()?>/for-alla/program/event/<?php echo $searchId ?>" />
 
     </head>
 <body>
 <script>
-   window.location = "/for-alla/program/#/event/<?php echo $searchId ?>";
+  // window.location = "/vetenskapsfestivalen/program/#/event/<?php echo $searchId ?>";
+  window.location = "/for-alla/program/#/event/<?php echo $searchId ?>";
 </script>
 </body>
 </html>

@@ -56,7 +56,16 @@ var myApp = angular.module('ngAppEvent',['ui.router','angularjs-dropdown-multise
             });
         }
     ]
-);
+)
+
+    .filter('to_trusted', ['$sce', function($sce){
+        return function(text) {
+            if(text != undefined)
+                return $sce.trustAsHtml(text.replace(/\n/g, '<br>'));
+            return "";
+        };
+    }]);
+
 
 
 
@@ -94,6 +103,8 @@ myApp.filter('search', function($filter){
         return items
     };
 });
+
+
 
 myApp.filter('dateToTime', function(){
     return function(item){
@@ -307,12 +318,22 @@ myApp.controller('VetShowEventController', function ($scope,$stateParams, $state
     $scope.eventDataDescription = function()
     {
         if($scope.eventData.description != undefined){
-            //return $sce.trustAsHtml( $scope.eventData.description.replace(/\n/g, '<br>'));
-            return $sce.trustAsHtml( $scope.eventData.description);
+            return $sce.trustAsHtml( $scope.eventData.description.replace(/\n/g, '<br>'));
         }
 
         return $sce.trustAsHtml("");
     }
+
+
+    $scope.eventDataDescription = function()
+    {
+        if($scope.eventData.description != undefined){
+            return $sce.trustAsHtml( $scope.eventData.description.replace(/\n/g, '<br>'));
+        }
+
+        return $sce.trustAsHtml("");
+    }
+
 
     uiGmapGoogleMapApi.then(function(maps) {
 
