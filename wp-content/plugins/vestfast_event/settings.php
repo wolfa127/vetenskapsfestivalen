@@ -6,6 +6,8 @@ if(!class_exists('WP_Plugin_Template_Settings'))
 		/**
 		 * Construct the plugin object
 		 */
+        private $insertCount = 0;
+        private $nodeCount = 0;
 
         public function __construct()
         {
@@ -172,18 +174,20 @@ if(!class_exists('WP_Plugin_Template_Settings'))
                 <?php if ( $_SERVER["REQUEST_METHOD"] == "POST" ){
                     if(isset($_POST['update'])){?>
                         <div id="message" class="updated">
-                            <p><strong><?php _e('Database Updated.') ?></strong></p>
+                            <p><strong><?php _e('Databas Uppdaterad med ' .  $this->insertCount . "/" . $this->nodeCount .  " poster") ?></strong></p>
                         </div>
                     <?php }
                     if(isset($_POST['delete'])){?>
                         <div id="message" class="updated">
-                            <p><strong><?php _e('Database Empty.') ?></strong></p>
+                            <p><strong><?php _e('Databas tömd') ?></strong></p>
                         </div>
                     <?php }
                 } ?>
                 <h2>Event Database</h2>
                 <form method="post" action="<?php echo $_SERVER['REQUEST_URI']; ?>">
+                    Antal sparade poster:
                     <?php
+                    echo $this->getEventCount();
                     // This prints out all hidden setting fields
                     submit_button('Updatera databas', 'primary', 'update' );
                     submit_button('Töm databas', 'primary', 'delete' );
@@ -204,6 +208,18 @@ if(!class_exists('WP_Plugin_Template_Settings'))
             <?php
 
         }
+
+
+        function getEventCount()
+        {
+            global $wpdb;
+            $countQuery = "SELECT COUNT(*) FROM wp_vetfastevent";
+            $resultCount=  $wpdb->get_var($countQuery);
+            return $resultCount;
+            exit;
+        }
+
+
         function checkForPost(){
 
             if ( $_SERVER["REQUEST_METHOD"] == "POST" ){
@@ -233,9 +249,6 @@ if(!class_exists('WP_Plugin_Template_Settings'))
             $wpdb->query("ALTER TABLE wp_vetfastevent_accessibilityTags AUTO_INCREMENT = 1");
             $wpdb->query("ALTER TABLE wp_vetfastevent_accessibilitylist AUTO_INCREMENT = 1");
 
-
-
-
         }
 
         function getEventDatabase(){
@@ -245,44 +258,64 @@ if(!class_exists('WP_Plugin_Template_Settings'))
             $url = $buildUrl;
             $xml = file_get_contents($url);
             $data = new SimpleXMLElement($xml);
+            $this->nodeCount = $data->count();
             global $wpdb;
+            //$wpdb->show_errors = true;
             $subjects_arr = array();
             $utility_arr = array();
-
+            $this -> insertCount = 0;
             foreach ($data->activity as $activity) {
-                $wpdb->insert(
-                    'wp_vetfastevent',
-                    array(
-                        'created' => $activity['created'],
-                        'updated' => $activity['updated'],
-                        'title' =>  trim($activity -> title),
-                        'description' =>  trim($activity -> description),
-                        'eventId' => $activity['id'],
-                        'event_type' => $activity -> type,
-                        'overhead_title' =>  trim($activity -> overhead_title),
-                        'overhead_description' => trim($activity -> overhead_description),
-                        'event_start' => $activity -> start,
-                        'event_end' => $activity -> end,
-                        'event_language' => $activity -> language,
-                        'venue' =>  trim($activity -> venue),
-                        'venue_number' => $activity -> venue_number,
-                        'venue_adress' =>  trim($activity -> venue_adress),
-                        'image_url' => $activity -> image,
-                        'crew' =>  trim($activity -> crew),
-                        'closest_public_transport' => $activity -> closest_public_transport,
-                        'geo_position' => $activity -> position,
-                        'highlight' => filter_var(strtolower($activity -> highlight), FILTER_VALIDATE_BOOLEAN),
-                        'family_activity' => filter_var(strtolower($activity -> family_activity), FILTER_VALIDATE_BOOLEAN),
-                    ),
-                    array('%s', '%s', '%s', '%s', '%d', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%d', '%d')
-                );
+
+                try{
+
+                    $insertarr = array(
+                        'created' => (string) $activity['created'],
+                        'updated' => (string) $activity['updated'],
+                        'title' =>  trim((string) $activity -> title),
+                        'description' =>  trim((string) $activity -> description),
+                        'description_short' =>  trim((string) $activity -> description_short),
+                        'eventId' => (int) $activity['id'],
+                        'event_type' => (string) $activity -> type,
+                        'overhead_title' =>  trim((string) $activity -> overhead_title),
+                        'overhead_description' => trim((string) $activity -> overhead_description),
+                        'event_start' => (string) $activity -> start,
+                        'event_end' => (string) $activity -> end,
+                        'event_language' => (string) $activity -> language,
+                        'venue' =>  trim((string) $activity -> venue),
+                        'venue_number' => (string) $activity -> venue_number,
+                        'venue_adress' =>  trim((string) $activity -> venue_adress),
+                        'image_url' => (string) $activity -> image,
+                        'crew' =>  trim((string) $activity -> crew),
+                        'closest_public_transport' => (string) $activity -> closest_public_transport,
+                        'geo_position' => (string) $activity -> position,
+                        'highlight' => filter_var(strtolower((int) $activity -> highlight), FILTER_VALIDATE_BOOLEAN),
+                        'family_activity' => filter_var(strtolower((int) $activity -> family_activity), FILTER_VALIDATE_BOOLEAN)
+                    );
+
+                    $insertResult =  $wpdb->query( $wpdb->prepare(
+                        "INSERT INTO wp_vetfastevent
+                    ( created, updated, title, description, description_short, eventId, event_type,overhead_title, overhead_description, event_start, event_end,event_language, venue,venue_number,venue_adress,image_url,crew,closest_public_transport, geo_position,highlight,family_activity)
+                    VALUES  ('%s', '%s', '%s', '%s','%s', '%d', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%d', '%d')",
+                        $insertarr
+                    ) );
+
+
+                    if($insertResult != false){
+                        $this -> insertCount++;
+                    }
+
+                }catch (Exception $e){
+
+
+                }
+
 
                 if($activity -> subjects -> children() -> count() > 0){
                     foreach ($activity -> subjects -> subject as $_subject) {
                         $_subject = trim((string) $_subject);
                         $key = array_search((string) $_subject, $subjects_arr);
                         if ($key == false) {
-                             $wpdb->insert('wp_vetfastevent_subjectTags', array('subject' => $_subject), array('%s'));
+                             $wpdb->insert('wp_vetfastevent_subjectTags', array('subject' => (string) $_subject), array('%s'));
                             $subjects_arr[$wpdb -> insert_id] =  $_subject;
                             $this -> insertSubject($wpdb -> insert_id, $activity['id']);
                         }
@@ -326,6 +359,7 @@ if(!class_exists('WP_Plugin_Template_Settings'))
                     }
 
                 }
+
             }
 
         }
@@ -335,8 +369,8 @@ if(!class_exists('WP_Plugin_Template_Settings'))
             $wpdb->insert(
                 'wp_vetfastevent_subjectlist',
                 array(
-                    'subjectId' => $_subjectId,
-                    'eventId' => $_eventId
+                    'subjectId' => (int) $_subjectId,
+                    'eventId' => (int) $_eventId
                 ),
                 array(
                     '%d',
@@ -350,8 +384,8 @@ if(!class_exists('WP_Plugin_Template_Settings'))
             $wpdb->insert(
                 'wp_vetfastevent_accessibilitylist',
                 array(
-                    'accessibilityId' => $_accessId,
-                    'eventId' => $_eventId
+                    'accessibilityId' => (int) $_accessId,
+                    'eventId' => (int) $_eventId
                 ),
                 array(
                     '%d',

@@ -11,7 +11,14 @@ require_once( 'wp-load.php' );
 
 global $wpdb;
 global $smof_data;
-$searchId = $_GET['id'];
+$searchId = 0;
+if(isset($_GET['id'])) {
+    $searchId = $_GET['id'];
+}else{
+    wp_redirect('/');
+    exit;
+}
+
 
 
 $sq_results = $wpdb->get_results(
@@ -19,6 +26,10 @@ $sq_results = $wpdb->get_results(
         $searchId
     ), 'ARRAY_A'
 );
+if(!$sq_results){
+    wp_redirect('/');
+    exit;
+}
 
 
 if($sq_results[0]['image_url'] !=''){

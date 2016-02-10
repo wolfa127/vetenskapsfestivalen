@@ -2,14 +2,18 @@
 /**
  * Baskonfiguration för WordPress.
  *
- * Denna fil innehåller följande konfigurationer: Inställningar för MySQL,
- * Tabellprefix, Säkerhetsnycklar, WordPress-språk, och ABSPATH.
- * Mer information på {@link http://codex.wordpress.org/Editing_wp-config.php 
- * Editing wp-config.php}. MySQL-uppgifter får du från ditt webbhotell.
- *
  * Denna fil används av wp-config.php-genereringsskript under installationen.
  * Du behöver inte använda webbplatsen, du kan kopiera denna fil direkt till
  * "wp-config.php" och fylla i värdena.
+ *
+ * Denna fil innehåller följande konfigurationer:
+ *
+ * * Inställningar för MySQL
+ * * Säkerhetsnycklar
+ * * Tabellprefix för databas
+ * * ABSPATH
+ *
+ * @link https://codex.wordpress.org/Editing_wp-config.php
  *
  * @package WordPress
  */
@@ -67,6 +71,11 @@ $table_prefix  = 'wp_';
  * Ändra detta till true för att aktivera meddelanden under utveckling. 
  * Det är rekommderat att man som tilläggsskapare och temaskapare använder WP_DEBUG 
  * i sin utvecklingsmiljö. 
+ *
+ * För information om andra konstanter som kan användas för felsökning, 
+ * se dokumentationen. 
+ * 
+ * @link https://codex.wordpress.org/Debugging_in_WordPress
  */ 
 define('WP_DEBUG', false);
 

@@ -737,6 +737,13 @@ ul.eventlist > li{
     font-size: 19px;
     line-height: 1em;
 }
+
+.eventlist-item .eventlist-item-content .eventItem_description_short {
+    display: block;
+    font-weight: normal;
+    font-size: 15px;
+    margin: 10px 0 10px 0;
+}
 .eventlist-item .eventlist-item-content .eventItem_event_type {
     font-size: 0.9em;
     font-style: italic;

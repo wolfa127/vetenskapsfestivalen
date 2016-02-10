@@ -39,15 +39,8 @@ if (!class_exists('Vetfast_event')) {
             add_action( 'wp_head', array( $this, 'add_ajax_library' ) );
             add_action( 'wp_head', array( $this, 'add_angular_for_template' ) );
 
-
-            add_action( 'wp_loaded', array( $this,'taco_kitten_rewrite') );
         } // END public function __construc
 
-
-        function taco_kitten_rewrite() {
-            $url = str_replace( trailingslashit( site_url() ), '', plugins_url( '/taco-kittens.php', __FILE__ ) );
-            add_rewrite_rule( 'taco-kittens\\.php$', $url, 'top' );
-        }
 
         /**
          * Activate the plugin
@@ -71,7 +64,7 @@ if (!class_exists('Vetfast_event')) {
                 event_end DATETIME NULL,
                 event_language VARCHAR(45) NULL,
                 venue VARCHAR(300) NULL,
-                venue_number INT NULL,
+                venue_number VARCHAR(15) NULL,
                 venue_adress VARCHAR(1000) NULL,
                 event_type VARCHAR(245) NULL,
                 theme VARCHAR(500) NULL,
@@ -79,10 +72,12 @@ if (!class_exists('Vetfast_event')) {
                 image_url VARCHAR(2000) NULL,
                 closest_public_transport VARCHAR(1000) NULL,
                 description VARCHAR(2000) NULL,
+                description_short VARCHAR(200) NULL,
                 geo_position VARCHAR (40) NULL,
                 highlight TINYINT(1) NULL,
-                family_activity TINYINT(1) NOT NULL,
-                PRIMARY KEY  (id));";
+                family_activity TINYINT(1) DEFAULT 0 NOT NULL,
+                PRIMARY KEY  (id)) CHARACTER SET 'latin1'
+  COLLATE 'latin1_swedish_ci';";
 
             require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
             dbDelta($sql_event);
@@ -93,31 +88,36 @@ if (!class_exists('Vetfast_event')) {
                 eventId INT NOT NULL,
                 url VARCHAR(2000) NULL,
                 title VARCHAR(2000) NULL,
-                PRIMARY KEY  (id));";
+                PRIMARY KEY  (id)) CHARACTER SET 'latin1'
+  COLLATE 'latin1_swedish_ci';";
             dbDelta($sql_eventlinks);
 
             $sql_eventsubjectTags = "CREATE TABLE IF NOT EXISTS wp_vetfastevent_subjectTags (
                 id MEDIUMINT NOT NULL AUTO_INCREMENT,
                 subject VARCHAR(2000) NULL,
-                PRIMARY KEY  (id));";
+                PRIMARY KEY  (id)) CHARACTER SET 'latin1'
+  COLLATE 'latin1_swedish_ci';";
             dbDelta($sql_eventsubjectTags);
 
             $sql_eventsubjectlist = "CREATE TABLE IF NOT EXISTS wp_vetfastevent_subjectlist (
                 eventId MEDIUMINT NOT NULL,
                 subjectId MEDIUMINT NOT NULL,
-                PRIMARY KEY  (eventId, subjectId));";
+                PRIMARY KEY  (eventId, subjectId)) CHARACTER SET 'latin1'
+  COLLATE 'latin1_swedish_ci';";
             dbDelta($sql_eventsubjectlist);
 
             $sql_accessibilityTags = "CREATE TABLE IF NOT EXISTS wp_vetfastevent_accessibilityTags (
                 id MEDIUMINT NOT NULL AUTO_INCREMENT,
                 accessibility VARCHAR(2000) NULL,
-                PRIMARY KEY  (id));";
+                PRIMARY KEY  (id)) CHARACTER SET 'latin1'
+  COLLATE 'latin1_swedish_ci';";
             dbDelta($sql_accessibilityTags);
 
             $sql_eventaccessibilityList = "CREATE TABLE IF NOT EXISTS wp_vetfastevent_accessibilitylist (
                 eventId MEDIUMINT NOT NULL,
                 accessibilityId MEDIUMINT NOT NULL,
-                PRIMARY KEY  (eventId, accessibilityId));";
+                PRIMARY KEY  (eventId, accessibilityId)) CHARACTER SET 'latin1'
+  COLLATE 'latin1_swedish_ci';";
             dbDelta($sql_eventaccessibilityList);
 
 
