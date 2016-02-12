@@ -9,7 +9,6 @@ Author URI: http://us-themes.com/
 
 /*Add your own styles here:*/
 
-/* TESTING 3 */
 
 h1 {
 }
@@ -648,11 +647,24 @@ ul.eventlist > li{
     vertical-align: middle;
     margin-right: 10px;
 }
-.eventlist-item{
+
+.no-touch .g-html .eventlist-item{
     display: table;
     overflow: hidden;
     width: 100%;
 }
+.no-touch .g-html .eventlist-item a {
+    color: #404040;
+}
+
+.no-touch .g-html .eventlist-item a:visited {
+    color: #404040;
+}
+
+.no-touch .g-html .eventlist-item a:hover {
+    color: #404040;
+}
+
 .eventlist-item-container{
     display: table;
     min-height: 6em;
