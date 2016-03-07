@@ -260,7 +260,7 @@ if(!class_exists('WP_Plugin_Template_Settings'))
             $data = new SimpleXMLElement($xml);
             $this->nodeCount = $data->count();
             global $wpdb;
-            //$wpdb->show_errors = true;
+            $wpdb->show_errors = true;
             $subjects_arr = array();
             $utility_arr = array();
             $this -> insertCount = 0;
@@ -288,8 +288,8 @@ if(!class_exists('WP_Plugin_Template_Settings'))
                         'crew' =>  trim((string) $activity -> crew),
                         'closest_public_transport' => (string) $activity -> closest_public_transport,
                         'geo_position' => (string) $activity -> position,
-                        'highlight' => filter_var(strtolower((int) $activity -> highlight), FILTER_VALIDATE_BOOLEAN),
-                        'family_activity' => filter_var(strtolower((int) $activity -> family_activity), FILTER_VALIDATE_BOOLEAN)
+                        'highlight' => filter_var($activity -> highlight, FILTER_VALIDATE_BOOLEAN),
+                        'family_activity' => filter_var($activity -> family_activity, FILTER_VALIDATE_BOOLEAN)
                     );
 
                     $insertResult =  $wpdb->query( $wpdb->prepare(
